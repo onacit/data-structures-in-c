@@ -14,8 +14,8 @@ struct singly_linked_node* singly_linked_node_malloc(void *);
 
 void * singly_linked_node_free(struct singly_linked_node *);
 
-void singly_linked_node_link(struct singly_linked_node *, struct singly_linked_node *);
+void singly_linked_node_link_next(struct singly_linked_node *, struct singly_linked_node *);
 
-struct singly_linked_node * singly_linked_node_unlink(struct singly_linked_node *);
+struct singly_linked_node * singly_linked_node_unlink_next(struct singly_linked_node *);
 
 #endif //DATA_STRUCTURES_IN_C_SINGLY_LINKED_LIST_R

@@ -57,7 +57,7 @@ int singly_linked_list_insert(struct singly_linked_list *list, size_t index, voi
             singly_linked_node_free(node);
             return EXIT_FAILURE;
         }
-        singly_linked_node_link(prev, node);
+        singly_linked_node_link_next(prev, node);
     }
     return EXIT_SUCCESS;
 }
@@ -72,7 +72,7 @@ void * singly_linked_list_delete(struct singly_linked_list *list, size_t index) 
         return singly_linked_node_free(node);
     }
     struct singly_linked_node *prev = singly_linked_list_peek(list, index - 1);
-    struct singly_linked_node *node = singly_linked_node_unlink(prev);
+    struct singly_linked_node *node = singly_linked_node_unlink_next(prev);
     return singly_linked_node_free(node);
 }
 

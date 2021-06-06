@@ -25,6 +25,6 @@ void doubly_linked_node_link_prev(struct doubly_linked_node *, struct doubly_lin
 
 struct doubly_linked_node * doubly_linked_node_unlink_prev(struct doubly_linked_node *);
 
-struct doubly_linked_node * doubly_linked_node_unlink(struct doubly_linked_node *);
+struct doubly_linked_node * doubly_linked_node_unlink_self(struct doubly_linked_node *);
 
 #endif //DATA_STRUCTURES_IN_C_DOUBLY_LINKED_LIST_R

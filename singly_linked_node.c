@@ -24,7 +24,7 @@ void * singly_linked_node_free(struct singly_linked_node *node) {
     return data;
 }
 
-void singly_linked_node_link(struct singly_linked_node *NODE, struct singly_linked_node *NEXT) {
+void singly_linked_node_link_next(struct singly_linked_node *NODE, struct singly_linked_node *NEXT) {
     assert(NODE != NULL);
     assert(NEXT != NULL);
     assert(NEXT != NODE);
@@ -32,7 +32,7 @@ void singly_linked_node_link(struct singly_linked_node *NODE, struct singly_link
     NODE->next = NEXT;
 }
 
-struct singly_linked_node * singly_linked_node_unlink(struct singly_linked_node *NODE) {
+struct singly_linked_node * singly_linked_node_unlink_next(struct singly_linked_node *NODE) {
     assert(NODE != NULL);
     struct singly_linked_node *NEXT = NODE->next;
     if (NEXT == NULL) {

@@ -80,7 +80,7 @@ struct doubly_linked_node * doubly_linked_node_unlink_prev(struct doubly_linked_
     return PREV;
 }
 
-struct doubly_linked_node * doubly_linked_node_unlink(struct doubly_linked_node *NODE) {
+struct doubly_linked_node * doubly_linked_node_unlink_self(struct doubly_linked_node *NODE) {
     assert(NODE != NULL);
     if (NODE->prev != NULL) {
         return doubly_linked_node_unlink_next(NODE->prev);
