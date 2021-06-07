@@ -1,6 +1,0 @@
-#ifndef DATA_STRUCTURES_IN_C_LIBRARY_H
-#define DATA_STRUCTURES_IN_C_LIBRARY_H
-
-void hello(void);
-
-#endif //DATA_STRUCTURES_IN_C_LIBRARY_H
