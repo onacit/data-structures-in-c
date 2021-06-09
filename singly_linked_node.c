@@ -17,10 +17,10 @@ singly_linked_node * singly_linked_node_alloc(void const *data) {
     return n;
 }
 
-void * singly_linked_node_free(singly_linked_node *node) {
+void const * singly_linked_node_free(singly_linked_node *node) {
     assert(node != NULL);
     assert(node->next == NULL);
-    void *d = node->data;
+    void const *d = node->data;
     node->data = NULL;
     free(node);
     return d;
@@ -47,7 +47,7 @@ singly_linked_node * singly_linked_node_unlink_next(singly_linked_node *node) {
 singly_linked_node * singly_linked_node_find(singly_linked_node *node, bool const (*test)(void *)) {
     assert(node != NULL);
     assert(test != NULL);
-    for (singly_linked_node *n = node; n != NULL; n = n->next) {
+    for (singly_linked_node *n = n; n != NULL; n = n->next) {
         if ((*test)(n->data)) {
             return n;
         }

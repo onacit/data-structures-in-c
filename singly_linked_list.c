@@ -13,11 +13,11 @@ static singly_linked_node* found_node;
 
 singly_linked_node* get_node(singly_linked_list const *l, size_t const i) {
     assert(l != NULL);
-    singly_linked_node *node = l->head;
-    for (size_t j = 0; node != NULL && j < i; j++) {
-        node = node->next;
+    singly_linked_node *n = l->head;
+    for (size_t j = 0; n != NULL && j < i; j++) {
+        n = n->next;
     }
-    return node;
+    return n;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -34,9 +34,9 @@ singly_linked_list * singly_linked_list_alloc() {
 
 void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *)) {
     assert(l != NULL);
-    assert(l->head == NULL || a != NULL);
     while(l->head != NULL) {
         void *d = singly_linked_list_delete(l, 0);
+        assert(a != NULL);
         (*a)(d);
     }
     free(l);
@@ -86,7 +86,6 @@ void * singly_linked_list_delete(singly_linked_list *l, size_t const i) {
         return singly_linked_node_free(h);
     }
     singly_linked_node *p = get_node(l, i - 1);
-    assert(p != NULL);
     singly_linked_node *n = singly_linked_node_unlink_next(p);
     return singly_linked_node_free(n);
 }
@@ -98,7 +97,6 @@ void singly_linked_list_traverse(singly_linked_list const *l, void const (*a)(vo
         (*a)(n->data);
     }
 }
-
 
 void * singly_linked_list_get_data(singly_linked_list *l, size_t i) {
     singly_linked_node* node = get_node(l, i);

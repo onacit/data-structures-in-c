@@ -17,4 +17,8 @@ int stack_push(stack const *s, void const *d);
 
 void * stack_pop(stack const *s);
 
+size_t stack_size(stack const *s);
+
+bool stack_empty(stack const *s);
+
 #endif //DATA_STRUCTURES_IN_C_STACK_H

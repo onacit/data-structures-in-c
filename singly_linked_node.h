@@ -9,12 +9,12 @@
 
 typedef struct singly_linked_node_ {
     struct singly_linked_node_ *next;
-    void *data;
+    void const *data;
 } singly_linked_node;
 
 singly_linked_node * singly_linked_node_alloc(void const *data);
 
-void * singly_linked_node_free(singly_linked_node *node);
+void const * singly_linked_node_free(singly_linked_node *node);
 
 void singly_linked_node_link_next(singly_linked_node *node, singly_linked_node *next);
 

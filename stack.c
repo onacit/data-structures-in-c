@@ -37,3 +37,15 @@ void * stack_pop(stack const *s) {
     return singly_linked_list_delete(s->list, 0);
 }
 
+size_t stack_size(stack const *s) {
+    assert(s != NULL);
+    return singly_linked_list_size(s->list);
+}
+
+bool stack_empty(stack const *s) {
+    assert(s != NULL);
+    return singly_linked_list_empty(s->list);
+}
+
+
+
