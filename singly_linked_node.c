@@ -6,52 +6,58 @@
 #include <stdlib.h>
 #include "singly_linked_node.h"
 
-struct singly_linked_node * singly_linked_node_malloc(void *data) {
-    struct singly_linked_node *node = malloc(sizeof(struct singly_linked_node));
-    if (node == NULL) {
+singly_linked_node * singly_linked_node_alloc(void const *data) {
+    size_t s = sizeof(singly_linked_node);
+    singly_linked_node *n = malloc(s);
+    if (n == NULL) {
         return NULL;
     }
-    node->data = data;
-    node->next = NULL;
-    return node;
+    n->data = data;
+    n->next = NULL;
+    return n;
 }
 
-void * singly_linked_node_free(struct singly_linked_node *node) {
+void * singly_linked_node_free(singly_linked_node *node) {
     assert(node != NULL);
     assert(node->next == NULL);
-    void *data = node->data;
+    void *d = node->data;
     node->data = NULL;
     free(node);
-    return data;
+    return d;
 }
 
-void singly_linked_node_link_next(struct singly_linked_node *NODE, struct singly_linked_node *NEXT) {
-    assert(NODE != NULL);
-    assert(NEXT != NULL);
-    NEXT->next = NODE->next;
-    NODE->next = NEXT;
+void singly_linked_node_link_next(singly_linked_node *node, singly_linked_node *next) {
+    assert(node != NULL);
+    assert(next != NULL);
+    next->next = node->next;
+    node->next = next;
 }
 
-struct singly_linked_node * singly_linked_node_unlink_next(struct singly_linked_node *NODE) {
-    assert(NODE != NULL);
-    struct singly_linked_node *NEXT = NODE->next;
-    if (NEXT == NULL) {
+singly_linked_node * singly_linked_node_unlink_next(singly_linked_node *node) {
+    assert(node != NULL);
+    singly_linked_node *next = node->next;
+    if (next == NULL) {
         return NULL;
     }
-    NODE->next = NEXT->next;
-    NEXT->next = NULL;
-    return NEXT;
+    node->next = next->next;
+    next->next = NULL;
+    return next;
 }
 
-struct singly_linked_node * singly_linked_node_find(struct singly_linked_node *node, bool const (*test)(void *)) {
+singly_linked_node * singly_linked_node_find(singly_linked_node *node, bool const (*test)(void *)) {
     assert(node != NULL);
     assert(test != NULL);
-    for (struct singly_linked_node *n = node; n != NULL; n = n->next) {
+    for (singly_linked_node *n = node; n != NULL; n = n->next) {
         if ((*test)(n->data)) {
             return n;
         }
     }
     return NULL;
 }
+
+//bool singly_linked_node_is_last(struct singly_linked_node_alloc *node) {
+//    assert(node != NULL);
+//    return node->next == NULL;
+//}
 
 

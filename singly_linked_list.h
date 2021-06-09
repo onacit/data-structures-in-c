@@ -7,24 +7,26 @@
 
 #include "singly_linked_node.h"
 
-struct singly_linked_list {
-    struct singly_linked_node *head;
-};
+typedef struct singly_linked_list_ {
+    singly_linked_node *head;
+} singly_linked_list;
 
-struct singly_linked_list * singly_linked_list_malloc();
+singly_linked_list * singly_linked_list_alloc();
 
-int singly_linked_list_insert(struct singly_linked_list *, size_t, void *);
+void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *));
 
-void * singly_linked_list_delete(struct singly_linked_list *, size_t);
+bool singly_linked_list_empty(singly_linked_list const *l);
 
-void * singly_linked_list_peek(struct singly_linked_list *, size_t);
+size_t singly_linked_list_size(singly_linked_list const *l);
 
-void singly_linked_list_traverse(struct singly_linked_list const *, void const (*)(void *));
+int singly_linked_list_insert(singly_linked_list *l, size_t i, void const *d);
 
-size_t singly_linked_list_size(struct singly_linked_list const *);
+void * singly_linked_list_delete(singly_linked_list *l, size_t i);
 
-//void singly_linked_list_empty(struct singly_linked_list *, void (*)(void *));
+void singly_linked_list_traverse(singly_linked_list const *l, void const (*a)(void *));
 
-void singly_linked_list_free(struct singly_linked_list *, void const (*)(void *));
+void * singly_linked_list_get_data(singly_linked_list *l, size_t i);
+
+void * singly_linked_list_set_data(singly_linked_list *l, size_t i, void *d);
 
 #endif //DATA_STRUCTURES_IN_C_SINGLY_LINKED_LIST_H

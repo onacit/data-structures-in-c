@@ -7,19 +7,19 @@
 
 #include <stdbool.h>
 
-struct singly_linked_node {
+typedef struct singly_linked_node_ {
+    struct singly_linked_node_ *next;
     void *data;
-    struct singly_linked_node *next;
-};
+} singly_linked_node;
 
-struct singly_linked_node * singly_linked_node_malloc(void *);
+singly_linked_node * singly_linked_node_alloc(void const *data);
 
-void * singly_linked_node_free(struct singly_linked_node *);
+void * singly_linked_node_free(singly_linked_node *node);
 
-void singly_linked_node_link_next(struct singly_linked_node *, struct singly_linked_node *);
+void singly_linked_node_link_next(singly_linked_node *node, singly_linked_node *next);
 
-struct singly_linked_node * singly_linked_node_unlink_next(struct singly_linked_node *);
+singly_linked_node * singly_linked_node_unlink_next(singly_linked_node *node);
 
-struct singly_linked_node * singly_linked_node_find(struct singly_linked_node *, bool const (*)(void *));
+singly_linked_node * singly_linked_node_find(singly_linked_node *node, bool const (*test)(void *));
 
 #endif //DATA_STRUCTURES_IN_C_SINGLY_LINKED_NODE_H
