@@ -8,8 +8,7 @@
 #include "stack.h"
 
 stack * stack_alloc() {
-    size_t size = sizeof(stack);
-    stack *s = malloc(size);
+    stack *s = malloc(sizeof(stack));
     if (s == NULL) {
         return NULL;
     }
@@ -33,7 +32,7 @@ int stack_push(stack *s, void *d) {
 }
 
 void * stack_pop(stack *s) {
-    assert(s != NULL);
+    assert(!stack_empty(s));
     return singly_linked_list_delete(s->list, 0);
 }
 
