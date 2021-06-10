@@ -11,14 +11,14 @@ typedef struct stack_ {
 
 stack * stack_alloc();
 
-void stack_free(stack *s, void const (*a)(void *));
+void stack_free(stack *s, void (*a)(void *));
 
-int stack_push(stack const *s, void const *d);
+int stack_push(stack *s, void *d);
 
-void * stack_pop(stack const *s);
+void * stack_pop(stack *s);
 
-size_t stack_size(stack const *s);
+size_t stack_size(stack *s);
 
-bool stack_empty(stack const *s);
+bool stack_empty(stack *s);
 
 #endif //DATA_STRUCTURES_IN_C_STACK_H

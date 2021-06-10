@@ -21,28 +21,28 @@ stack * stack_alloc() {
     return s;
 }
 
-void stack_free(stack *s, void const (*a)(void *)) {
+void stack_free(stack *s, void (*a)(void *)) {
     assert(s != NULL);
     singly_linked_list_free(s->list, a);
     free(s);
 }
 
-int stack_push(stack const *s, void const *d) {
+int stack_push(stack *s, void *d) {
     assert(s != NULL);
     return singly_linked_list_insert(s->list, 0, d);
 }
 
-void * stack_pop(stack const *s) {
+void * stack_pop(stack *s) {
     assert(s != NULL);
     return singly_linked_list_delete(s->list, 0);
 }
 
-size_t stack_size(stack const *s) {
+size_t stack_size(stack *s) {
     assert(s != NULL);
     return singly_linked_list_size(s->list);
 }
 
-bool stack_empty(stack const *s) {
+bool stack_empty(stack *s) {
     assert(s != NULL);
     return singly_linked_list_empty(s->list);
 }

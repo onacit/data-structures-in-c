@@ -11,7 +11,7 @@
 static size_t *found_index;
 static singly_linked_node* found_node;
 
-singly_linked_node* get_node(singly_linked_list const *l, size_t const i) {
+singly_linked_node* get_node(singly_linked_list *l, size_t i) {
     assert(l != NULL);
     singly_linked_node *n = l->head;
     for (size_t j = 0; n != NULL && j < i; j++) {
@@ -32,7 +32,7 @@ singly_linked_list * singly_linked_list_alloc() {
     return l;
 }
 
-void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *)) {
+void singly_linked_list_free(singly_linked_list *l, void (*a)(void *)) {
     assert(l != NULL);
     while(l->head != NULL) {
         void *d = singly_linked_list_delete(l, 0);
@@ -42,7 +42,7 @@ void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *)) {
     free(l);
 }
 
-size_t singly_linked_list_size(singly_linked_list const *l) {
+size_t singly_linked_list_size(singly_linked_list *l) {
     assert(l != NULL);
     size_t s = 0;
     for (singly_linked_node *n = l->head; n != NULL; n = n->next) {
@@ -51,12 +51,12 @@ size_t singly_linked_list_size(singly_linked_list const *l) {
     return s;
 }
 
-bool singly_linked_list_empty(singly_linked_list const *l) {
+bool singly_linked_list_empty(singly_linked_list *l) {
     assert(l != NULL);
     return l->head == NULL;
 }
 
-int singly_linked_list_insert(singly_linked_list *l, size_t const i, void const *d) {
+int singly_linked_list_insert(singly_linked_list *l, size_t i, void *d) {
     assert(l != NULL);
     singly_linked_node *n = singly_linked_node_alloc(d);
     if (n == NULL) {
@@ -76,7 +76,7 @@ int singly_linked_list_insert(singly_linked_list *l, size_t const i, void const 
     return EXIT_SUCCESS;
 }
 
-void * singly_linked_list_delete(singly_linked_list *l, size_t const i) {
+void * singly_linked_list_delete(singly_linked_list *l, size_t i) {
     assert(l != NULL);
     assert(l->head != NULL);
     if (i == 0) {
@@ -90,7 +90,7 @@ void * singly_linked_list_delete(singly_linked_list *l, size_t const i) {
     return singly_linked_node_free(n);
 }
 
-void singly_linked_list_traverse(singly_linked_list const *l, void const (*a)(void *)) {
+void singly_linked_list_traverse(singly_linked_list *l, void (*a)(void *)) {
     assert(l != NULL);
     assert(a != NULL);
     for (singly_linked_node *n = l->head; n != NULL; n = n->next) {

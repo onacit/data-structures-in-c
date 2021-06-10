@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "singly_linked_node.h"
 
-singly_linked_node * singly_linked_node_alloc(void const *data) {
+singly_linked_node * singly_linked_node_alloc(void *data) {
     size_t s = sizeof(singly_linked_node);
     singly_linked_node *n = malloc(s);
     if (n == NULL) {
@@ -17,10 +17,10 @@ singly_linked_node * singly_linked_node_alloc(void const *data) {
     return n;
 }
 
-void const * singly_linked_node_free(singly_linked_node *node) {
+void * singly_linked_node_free(singly_linked_node *node) {
     assert(node != NULL);
     assert(node->next == NULL);
-    void const *d = node->data;
+    void *d = node->data;
     node->data = NULL;
     free(node);
     return d;
@@ -44,7 +44,7 @@ singly_linked_node * singly_linked_node_unlink_next(singly_linked_node *node) {
     return next;
 }
 
-singly_linked_node * singly_linked_node_find(singly_linked_node *node, bool const (*test)(void *)) {
+singly_linked_node * singly_linked_node_find(singly_linked_node *node, bool (*test)(void *)) {
     assert(node != NULL);
     assert(test != NULL);
     for (singly_linked_node *n = n; n != NULL; n = n->next) {
