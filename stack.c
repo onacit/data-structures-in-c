@@ -23,6 +23,7 @@ struct stack * stack_alloc() {
 void stack_free(struct stack *s, void (*a)(void *)) {
     assert(s != NULL);
     singly_linked_list_free(s->list, a);
+    s->list = NULL;
     free(s);
 }
 

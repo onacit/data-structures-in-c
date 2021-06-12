@@ -5,13 +5,12 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "common.h"
 #include "singly_linked_list.h"
 
 static size_t *found_index;
 static struct singly_linked_node* found_node;
 
-struct singly_linked_node* get_node(struct singly_linked_list const *l, size_t const i) {
+struct singly_linked_node* get_node(struct singly_linked_list *l, size_t i) {
     assert(l != NULL);
     struct singly_linked_node *n = l->head;
     for (size_t j = 0; n != NULL && j < i; j++) {
@@ -23,8 +22,7 @@ struct singly_linked_node* get_node(struct singly_linked_list const *l, size_t c
 // ---------------------------------------------------------------------------------------------------------------------
 
 struct singly_linked_list * singly_linked_list_alloc() {
-    size_t size = sizeof(struct singly_linked_list);
-    struct singly_linked_list *l = malloc(size);
+    struct singly_linked_list *l = malloc(sizeof(struct singly_linked_list));
     if (l == NULL) {
         return NULL;
     }
@@ -111,15 +109,3 @@ void * singly_linked_list_set_data(struct singly_linked_list *l, size_t i, void 
     node->data = d;
     return prev;
 }
-
-
-
-//void singly_linked_list_empty(singly_linked_list *list, void (*consumer)(void *)) {
-//    assert(list != NULL);
-//    while (list->head != NULL) {
-//        void *data = singly_linked_list_delete(list, 0);
-//        (*consumer)(data);
-//    }
-//}
-
-

@@ -7,8 +7,7 @@
 #include "singly_linked_node.h"
 
 struct singly_linked_node * singly_linked_node_alloc(void *data) {
-    size_t s = sizeof(struct singly_linked_node);
-    struct singly_linked_node *n = malloc(s);
+    struct singly_linked_node *n = malloc(sizeof(struct singly_linked_node));
     if (n == NULL) {
         return NULL;
     }
@@ -29,6 +28,7 @@ void * singly_linked_node_free(struct singly_linked_node *node) {
 void singly_linked_node_link_next(struct singly_linked_node *node, struct singly_linked_node *next) {
     assert(node != NULL);
     assert(next != NULL);
+    assert(next->next == NULL);
     next->next = node->next;
     node->next = next;
 }
