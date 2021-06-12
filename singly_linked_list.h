@@ -1,7 +1,6 @@
 //
 // Created by onacit on 2021-06-05.
 //
-//https://gist.github.com/meylingtaing/11018042
 #ifndef DATA_STRUCTURES_IN_C_SINGLY_LINKED_LIST_H
 #define DATA_STRUCTURES_IN_C_SINGLY_LINKED_LIST_H
 
