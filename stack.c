@@ -7,9 +7,8 @@
 #include "singly_linked_list.h"
 #include "stack.h"
 
-stack * stack_alloc() {
-    size_t size = sizeof(stack);
-    stack *s = malloc(size);
+struct stack * stack_alloc() {
+    struct stack *s = malloc(sizeof(struct stack));
     if (s == NULL) {
         return NULL;
     }
@@ -21,28 +20,28 @@ stack * stack_alloc() {
     return s;
 }
 
-void stack_free(stack *s, void const (*a)(void *)) {
+void stack_free(struct stack *s, void (*a)(void *)) {
     assert(s != NULL);
     singly_linked_list_free(s->list, a);
     free(s);
 }
 
-int stack_push(stack const *s, void const *d) {
+int stack_push(struct stack *s, void *d) {
     assert(s != NULL);
     return singly_linked_list_insert(s->list, 0, d);
 }
 
-void * stack_pop(stack const *s) {
+void * stack_pop(struct stack *s) {
     assert(s != NULL);
     return singly_linked_list_delete(s->list, 0);
 }
 
-size_t stack_size(stack const *s) {
+size_t stack_size(struct stack *s) {
     assert(s != NULL);
     return singly_linked_list_size(s->list);
 }
 
-bool stack_empty(stack const *s) {
+bool stack_empty(struct stack *s) {
     assert(s != NULL);
     return singly_linked_list_empty(s->list);
 }

@@ -9,11 +9,11 @@
 #include "singly_linked_list.h"
 
 static size_t *found_index;
-static singly_linked_node* found_node;
+static struct singly_linked_node* found_node;
 
-singly_linked_node* get_node(singly_linked_list const *l, size_t const i) {
+struct singly_linked_node* get_node(struct singly_linked_list const *l, size_t const i) {
     assert(l != NULL);
-    singly_linked_node *n = l->head;
+    struct singly_linked_node *n = l->head;
     for (size_t j = 0; n != NULL && j < i; j++) {
         n = n->next;
     }
@@ -22,9 +22,9 @@ singly_linked_node* get_node(singly_linked_list const *l, size_t const i) {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-singly_linked_list * singly_linked_list_alloc() {
-    size_t size = sizeof(singly_linked_list);
-    singly_linked_list *l = malloc(size);
+struct singly_linked_list * singly_linked_list_alloc() {
+    size_t size = sizeof(struct singly_linked_list);
+    struct singly_linked_list *l = malloc(size);
     if (l == NULL) {
         return NULL;
     }
@@ -32,7 +32,7 @@ singly_linked_list * singly_linked_list_alloc() {
     return l;
 }
 
-void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *)) {
+void singly_linked_list_free(struct singly_linked_list *l, void (*a)(void *)) {
     assert(l != NULL);
     while(l->head != NULL) {
         void *d = singly_linked_list_delete(l, 0);
@@ -42,23 +42,23 @@ void singly_linked_list_free(singly_linked_list *l, void const (*a)(void *)) {
     free(l);
 }
 
-size_t singly_linked_list_size(singly_linked_list const *l) {
+size_t singly_linked_list_size(struct singly_linked_list *l) {
     assert(l != NULL);
     size_t s = 0;
-    for (singly_linked_node *n = l->head; n != NULL; n = n->next) {
+    for (struct singly_linked_node *n = l->head; n != NULL; n = n->next) {
         s++;
     }
     return s;
 }
 
-bool singly_linked_list_empty(singly_linked_list const *l) {
+bool singly_linked_list_empty(struct singly_linked_list *l) {
     assert(l != NULL);
     return l->head == NULL;
 }
 
-int singly_linked_list_insert(singly_linked_list *l, size_t const i, void const *d) {
+int singly_linked_list_insert(struct singly_linked_list *l, size_t i, void *d) {
     assert(l != NULL);
-    singly_linked_node *n = singly_linked_node_alloc(d);
+    struct singly_linked_node *n = singly_linked_node_alloc(d);
     if (n == NULL) {
         return EXIT_FAILURE;
     }
@@ -67,7 +67,7 @@ int singly_linked_list_insert(singly_linked_list *l, size_t const i, void const 
         l->head = n;
         return EXIT_SUCCESS;
     }
-    singly_linked_node *p = get_node(l, i - 1);
+    struct singly_linked_node *p = get_node(l, i - 1);
     if (p == NULL) {
         singly_linked_node_free(n);
         return EXIT_FAILURE;
@@ -76,36 +76,36 @@ int singly_linked_list_insert(singly_linked_list *l, size_t const i, void const 
     return EXIT_SUCCESS;
 }
 
-void * singly_linked_list_delete(singly_linked_list *l, size_t const i) {
+void * singly_linked_list_delete(struct singly_linked_list *l, size_t i) {
     assert(l != NULL);
     assert(l->head != NULL);
     if (i == 0) {
-        singly_linked_node *h = l->head;
+        struct singly_linked_node *h = l->head;
         l->head = h->next;
         h->next = NULL;
         return singly_linked_node_free(h);
     }
-    singly_linked_node *p = get_node(l, i - 1);
-    singly_linked_node *n = singly_linked_node_unlink_next(p);
+    struct singly_linked_node *p = get_node(l, i - 1);
+    struct singly_linked_node *n = singly_linked_node_unlink_next(p);
     return singly_linked_node_free(n);
 }
 
-void singly_linked_list_traverse(singly_linked_list const *l, void const (*a)(void *)) {
+void singly_linked_list_traverse(struct singly_linked_list *l, void (*a)(void *)) {
     assert(l != NULL);
     assert(a != NULL);
-    for (singly_linked_node *n = l->head; n != NULL; n = n->next) {
+    for (struct singly_linked_node *n = l->head; n != NULL; n = n->next) {
         (*a)(n->data);
     }
 }
 
-void * singly_linked_list_get_data(singly_linked_list *l, size_t i) {
-    singly_linked_node* node = get_node(l, i);
+void * singly_linked_list_get_data(struct singly_linked_list *l, size_t i) {
+    struct singly_linked_node* node = get_node(l, i);
     assert(node != NULL);
     return node->data;
 }
 
-void * singly_linked_list_set_data(singly_linked_list *l, size_t i, void *d) {
-    singly_linked_node* node = get_node(l, i);
+void * singly_linked_list_set_data(struct singly_linked_list *l, size_t i, void *d) {
+    struct singly_linked_node* node = get_node(l, i);
     assert(node != NULL);
     void *prev = node->data;
     node->data = d;

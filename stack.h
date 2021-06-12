@@ -5,20 +5,20 @@
 #ifndef DATA_STRUCTURES_IN_C_STACK_H
 #define DATA_STRUCTURES_IN_C_STACK_H
 
-typedef struct stack_ {
-    singly_linked_list *list;
-} stack;
+struct stack {
+    struct singly_linked_list *list;
+};
 
-stack * stack_alloc();
+struct stack * stack_alloc();
 
-void stack_free(stack *s, void const (*a)(void *));
+void stack_free(struct stack *s, void (*a)(void *));
 
-int stack_push(stack const *s, void const *d);
+int stack_push(struct stack *s, void *d);
 
-void * stack_pop(stack const *s);
+void * stack_pop(struct stack *s);
 
-size_t stack_size(stack const *s);
+size_t stack_size(struct stack *s);
 
-bool stack_empty(stack const *s);
+bool stack_empty(struct stack *s);
 
 #endif //DATA_STRUCTURES_IN_C_STACK_H
