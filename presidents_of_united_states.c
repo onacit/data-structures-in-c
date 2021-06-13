@@ -11,55 +11,38 @@
 
 static char FileName[] = "..\\presidents_of_united_states.txt";
 
-void presidents_of_united_states_for_each(void (*a)(struct president_of_united_state *)) {
+void presidents_of_united_states_iterate(struct president_of_united_state_iterator * i) {
+    assert(i != NULL);
     FILE *stream;
-    const errno_t opened = fopen_s(&stream, FileName, "r");
-    if (opened != 0) {
-        fprintf(stderr, "failed to open %s; errno: %d\n", FileName, opened);
-        return;
-    }
-    char buf[27];
-    while (fgets(buf, 27, stream)) {
-        buf[strcspn(buf, "\r\n")] = 0;
-        printf("%s\n", buf);
-        char *name;
-        const long int ordinal = strtol(buf, &name, 10);
-        name++;
-        printf("%ld\n", ordinal);
-        printf("%s\n", name);
-        struct president_of_united_state *p = malloc(sizeof (struct president_of_united_state));
-        if (p == NULL) {
+    {
+        const errno_t opened = fopen_s(&stream, FileName, "r");
+        if (opened != 0) {
+            fprintf(stderr, "failed to open %s; errno: %d\n", FileName, opened);
+            return;
         }
-        p->ordinal = ordinal;
-        size_t size = strlen(name) + 1;
-        p->name = malloc(size);
-        strcpy_s(p->name, size, name);
-        printf("%u %s\n", p->ordinal, p->name);
-        free(p->name);
-        free(p);
     }
-    const int closed = fclose(stream);
-    if (closed != 0) {
-        fprintf(stderr, "failed to close %s; result: %d\n", FileName, closed);
+    char b[27];
+    char *n;
+    while (fgets(b, 27, stream)) {
+        b[strcspn(b, "\r\n")] = 0;
+        const long int ordinal = strtol(b, &n, 10);
+        ++n;
+        struct president_of_united_state *p = malloc(sizeof (struct president_of_united_state));
+        assert(p != NULL);
+        p->o = ordinal;
+        size_t size = strlen(n) + 1;
+        p->n = malloc(size);
+        strcpy_s(p->n, size, n);
+        i->n(i, p);
+    }
+    {
+        const int closed = fclose(stream);
+        if (closed != 0) {
+            fprintf(stderr, "failed to close %s; result: %d\n", FileName, closed);
+        }
     }
 }
 
-//struct singly_linked_node * presidents_of_united_states_singly_linked_nodes() {
-//    FILE *stream;
-//    const errno_t opened = fopen_s(&stream, FileName, "r");
-//    if (opened != 0) {
-//        fprintf(stderr, "failed to open %s; errno: %d\n", FileName, opened);
-//        return NULL;
-//    }
-//    int *ordinal = NULL;
-//    char *name = NULL;
-//    while (fscanf_s(stream, "%d %s\n", ordinal, name) != EOF) {
-//    }
-//    const int closed = fclose(stream);
-//    if (closed != 0) {
-//        fprintf(stderr, "failed to close %s; result: %d\n", FileName, closed);
-//    }
-//}
 
 
 

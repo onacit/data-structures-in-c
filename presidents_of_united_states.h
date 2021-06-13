@@ -7,15 +7,16 @@
 
 #include "singly_linked_node.h"
 
-#define MAX_LINE_LEN = 27;
-
 struct president_of_united_state {
-    unsigned char ordinal;
-    char *name;
+    unsigned char o;
+    char *n;
 };
 
-void presidents_of_united_states_for_each(void (*a)(struct president_of_united_state *));
+struct president_of_united_state_iterator {
+    void * e;
+    void (*n)(struct president_of_united_state_iterator *i, struct president_of_united_state *p);
+};
 
-//struct singly_linked_node * presidents_of_united_states_singly_linked_nodes();
+void presidents_of_united_states_iterate(struct president_of_united_state_iterator * i);
 
 #endif //DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H

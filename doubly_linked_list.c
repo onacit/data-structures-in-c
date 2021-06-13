@@ -33,14 +33,14 @@ struct doubly_linked_node* doubly_linked_list_insert_node(struct doubly_linked_l
 //        free(n);
 //        return NULL;
 //    }
-//    s->next = NULL;
+//    s->n = NULL;
 //    if (i == 0) {
-//        n->sing->next = l->head;
+//        n->sing->n = l->head;
 //        l->head = n;
 //    } else {
 //        struct doubly_linked_node *p = doubly_linked_list_get_node(l, i - 1);
-//        n->sing->next = p->sing->next;
-//        p->sing->next = n;
+//        n->sing->n = p->sing->n;
+//        p->sing->n = n;
 //    }
 //    n->sing->data = d;
 //    return n;
