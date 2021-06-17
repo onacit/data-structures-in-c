@@ -3,7 +3,6 @@
 //
 
 #include <assert.h>
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,11 +21,11 @@ void presidents_of_united_states_iterate(struct president_of_united_state_iterat
     char *n;
     while (fgets(b, 27, stream)) {
         b[strcspn(b, "\r\n")] = 0;
-        const long int ordinal = strtol(b, &n, 10);
+        const long int o = strtol(b, &n, 10);
         ++n;
         struct president_of_united_state *p = malloc(sizeof (struct president_of_united_state));
         assert(p != NULL);
-        p->o = ordinal;
+        p->o = o;
         size_t size = strlen(n) + 1;
         p->n = malloc(size);
         strcpy(p->n, n);
