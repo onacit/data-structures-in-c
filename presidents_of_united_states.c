@@ -13,13 +13,10 @@ static char FileName[] = "..\\presidents_of_united_states.txt";
 
 void presidents_of_united_states_iterate(struct president_of_united_state_iterator * i) {
     assert(i != NULL);
-    FILE *stream;
-    {
-        const errno_t opened = fopen_s(&stream, FileName, "r");
-        if (opened != 0) {
-            fprintf(stderr, "failed to open %s; errno: %d\n", FileName, opened);
-            return;
-        }
+    FILE *stream = fopen(FileName, "r");
+    if (stream == NULL) {
+        fprintf(stderr, "failed to open %s\n", FileName);
+        return;
     }
     char b[27];
     char *n;
@@ -32,7 +29,7 @@ void presidents_of_united_states_iterate(struct president_of_united_state_iterat
         p->o = ordinal;
         size_t size = strlen(n) + 1;
         p->n = malloc(size);
-        strcpy_s(p->n, size, n);
+        strcpy(p->n, n);
         i->n(i, p);
     }
     {
