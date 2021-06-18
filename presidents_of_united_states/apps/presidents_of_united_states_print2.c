@@ -22,7 +22,7 @@ int main() {
         return EXIT_FAILURE;
     }
     iterator->environment = NULL;
-    iterator->consume = print;
+    iterator->accept = print;
     if (presidents_of_united_states_iterate(iterator) != EXIT_SUCCESS) {
         fprintf(stderr, "iteration failed\n");
     }
