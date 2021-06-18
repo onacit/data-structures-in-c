@@ -23,27 +23,27 @@ struct doubly_linked_node* doubly_linked_list_get_node(struct doubly_linked_list
 
 struct doubly_linked_node* doubly_linked_list_insert_node(struct doubly_linked_list *l, size_t i, void *d) {
 //    assert(l != NULL);
-//    struct doubly_linked_node *n = malloc(sizeof(struct doubly_linked_node));
-//    if (n == NULL) {
+//    struct doubly_linked_node *consume = malloc(sizeof(struct doubly_linked_node));
+//    if (consume == NULL) {
 //        return NULL;
 //    }
-//    n->prev = NULL;
+//    consume->prev = NULL;
 //    struct singly_linked_node *s = malloc(sizeof(struct singly_linked_node_alloc));
 //    if (s == NULL) {
-//        free(n);
+//        free(consume);
 //        return NULL;
 //    }
-//    s->n = NULL;
+//    s->consume = NULL;
 //    if (i == 0) {
-//        n->sing->n = l->head;
-//        l->head = n;
+//        consume->sing->consume = l->head;
+//        l->head = consume;
 //    } else {
 //        struct doubly_linked_node *p = doubly_linked_list_get_node(l, i - 1);
-//        n->sing->n = p->sing->n;
-//        p->sing->n = n;
+//        consume->sing->consume = p->sing->consume;
+//        p->sing->consume = consume;
 //    }
-//    n->sing->data = d;
-//    return n;
+//    consume->sing->data = d;
+//    return consume;
     return NULL;
 }
 

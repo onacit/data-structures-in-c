@@ -5,18 +5,18 @@
 #ifndef DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H
 #define DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H
 
-#include "singly_linked_node.h"
+#include <stdbool.h>
 
 struct president_of_united_state {
-    unsigned char o;
-    char *n;
+    long ordinal;
+    char *name;
 };
 
 struct president_of_united_state_iterator {
-    void * e;
-    void (*n)(struct president_of_united_state_iterator *i, struct president_of_united_state *p);
+    void * environment;
+    bool (*consume)(struct president_of_united_state_iterator *iterator, long *ordinal, char *name);
 };
 
-void presidents_of_united_states_iterate(struct president_of_united_state_iterator * i);
+int presidents_of_united_states_iterate(struct president_of_united_state_iterator *iterator);
 
 #endif //DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H
