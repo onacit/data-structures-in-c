@@ -5,7 +5,7 @@
 #ifndef DATA_STRUCTURES_IN_C_DOUBLY_LINKED_LIST_R
 #define DATA_STRUCTURES_IN_C_DOUBLY_LINKED_LIST_R
 
-#include "singly_linked_node.h"
+#include "singly_linked_list/include/singly_linked_node.h"
 
 struct doubly_linked_node {
     void *data;

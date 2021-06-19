@@ -7,16 +7,16 @@
 
 #include <stdbool.h>
 
-int presidents_of_united_states_consume(bool (*accept)(long *, char *));
+int presidents_of_united_states_consume(bool (*accept)(long *presidency, char *president));
 
 struct president_of_united_state {
-    long ordinal;
-    char *name;
+    long presidency;
+    char *president;
 };
 
 struct president_of_united_state_iterator {
     void * environment;
-    bool (*accept)(struct president_of_united_state_iterator *iterator, long *ordinal, char *name);
+    bool (*accept)(struct president_of_united_state_iterator *iterator, long *presidency, char *president);
 };
 
 int presidents_of_united_states_iterate(struct president_of_united_state_iterator *iterator);

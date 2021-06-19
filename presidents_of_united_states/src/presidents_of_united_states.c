@@ -8,23 +8,24 @@
 #include <string.h>
 #include "presidents_of_united_states.h"
 
-static char FileName[] = "presidents_of_united_states.txt";
+static char filename[] = "presidents_of_united_states.txt";
 
-int presidents_of_united_states_consume(bool (*accept)(long *, char *)) {
+int presidents_of_united_states_consume(bool (*const accept)(long *, char *)) {
     assert(accept != NULL);
     FILE *stream;
-    if ((stream = fopen(FileName, "r")) == NULL) {
-        fprintf(stderr, "failed to open %s\n", FileName);
+    if ((stream = fopen(filename, "r")) == NULL) {
+        fprintf(stderr, "failed to open %s\n", filename);
         return EXIT_FAILURE;
     }
-    char buffer[27];
-    long ordinal;
-    char *name;
-    while (fgets(buffer, 27, stream)) {
-        buffer[strcspn(buffer, "\r\n")] = 0;
-        ordinal = strtol(buffer, &name, 10);
-        ++name;
-        if (!(*accept)(&ordinal, name)) {
+    char buf[26];
+    const int len = (int) strlen(buf);
+    long presidency;
+    char *president;
+    while (fgets(buf, len, stream)) {
+        buf[strcspn(buf, "\r\n")] = 0;
+        presidency = strtol(buf, &president, 10);
+        ++president;
+        if (!(*accept)(&presidency, president)) {
             break;
         }
     }
@@ -35,21 +36,22 @@ int presidents_of_united_states_consume(bool (*accept)(long *, char *)) {
     return EXIT_SUCCESS;
 }
 
-int presidents_of_united_states_iterate(struct president_of_united_state_iterator *iterator) {
+int presidents_of_united_states_iterate(struct president_of_united_state_iterator *const iterator) {
     assert(iterator != NULL);
     FILE *stream;
-    if ((stream = fopen(FileName, "r")) == NULL) {
-        fprintf(stderr, "failed to open %s\n", FileName);
+    if ((stream = fopen(filename, "r")) == NULL) {
+        fprintf(stderr, "failed to open %s\n", filename);
         return EXIT_FAILURE;
     }
-    char buffer[27];
-    long ordinal;
-    char *name;
-    while (fgets(buffer, 27, stream)) {
-        buffer[strcspn(buffer, "\r\n")] = 0;
-        ordinal = strtol(buffer, &name, 10);
-        ++name;
-        if (!iterator->accept(iterator, &ordinal, name)) {
+    char buf[26];
+    const int len = (int) strlen(buf);
+    long presidency;
+    char *president;
+    while (fgets(buf, len, stream)) {
+        buf[strcspn(buf, "\r\n")] = 0;
+        presidency = strtol(buf, &president, 10);
+        ++president;
+        if (!iterator->accept(iterator, &presidency, president)) {
             break;
         }
     }

@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include "presidents_of_united_states.h"
 
-bool print(long *ordinal, char *name) {
-    assert(ordinal != NULL);
-    assert(name != NULL);
-    printf("%-2ld %s\n", *ordinal, name);
+bool print(long *const presidency, char *const president) {
+    assert(presidency != NULL);
+    assert(president != NULL);
+    printf("%2ld %s\n", *presidency, president);
     return true;
 }
 

@@ -4,7 +4,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include "singly_linked_list.h"
+#include "singly_linked_list/include/singly_linked_list.h"
 #include "stack.h"
 
 struct stack * stack_alloc() {

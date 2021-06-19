@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "presidents_of_united_states.h"
 
-bool print(struct president_of_united_state_iterator *iterator, long *ordinal, char *name) {
+bool print(struct president_of_united_state_iterator *iterator, const long *ordinal, const char *name) {
     assert(iterator != NULL);
     assert(ordinal != NULL);
     assert(name != NULL);

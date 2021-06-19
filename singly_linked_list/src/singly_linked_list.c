@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "singly_linked_list.h"
+#include "../include/singly_linked_list.h"
 
 static size_t *found_index;
 static struct singly_linked_node* found_node;
