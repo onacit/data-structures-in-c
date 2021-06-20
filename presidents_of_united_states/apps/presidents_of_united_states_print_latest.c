@@ -41,8 +41,7 @@ int main() {
     iterator->environment = president;
     iterator->accept = accept;
     if (presidents_of_united_states_iterate(iterator) == EXIT_SUCCESS) {
-        printf("Presidency and president of United States: %ld %s\n",
-               president->presidency, president->president);
+        printf("%s is the latest president of United States.\n", president->president);
     } else {
         fprintf (stderr, "iteration failed\n");
     }

@@ -7,11 +7,11 @@
 #include <stdlib.h>
 #include "presidents_of_united_states.h"
 
-bool print(long *presidency, char *president) {
+bool print(long *const presidency, char *const president) {
     assert(presidency != NULL);
     assert(president != NULL);
-    printf("%2ld %s\n", *presidency, president);
-    return true;
+    printf("%s is the latest president of United States.\n", president);
+    return false;
 }
 
 int main() {

@@ -28,6 +28,10 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
     presidency_to_find = strtol(argv[1], NULL, 10);
+    if (presidency_to_find == 0L) {
+        fprintf(stderr, "failed to convert %s as a presidency\n", argv[1]);
+        return EXIT_FAILURE;
+    }
     if (presidents_of_united_states_consume(find_by_presidency) != EXIT_SUCCESS) {
         fprintf(stderr, "consuming failed\n");
         return EXIT_FAILURE;

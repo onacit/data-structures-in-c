@@ -10,7 +10,7 @@
 
 static char *president_to_match;
 
-bool find_by_president(const long *presidency, const char *president) {
+bool find_by_president(long *presidency, char *president) {
     assert(presidency != NULL);
     assert(president != NULL);
     if (strstr(president, president_to_match) != NULL) {
