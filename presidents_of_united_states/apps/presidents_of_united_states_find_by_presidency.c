@@ -7,15 +7,12 @@
 #include <stdlib.h>
 #include "presidents_of_united_states.h"
 
-static int c;
-static long **v;
-
-static long presidency_to_find;
+static long presidency_to_match;
 
 bool find_by_presidency(long *presidency, char *president) {
     assert(presidency != NULL);
     assert(president != NULL);
-    if (*presidency == presidency_to_find) {
+    if (*presidency == presidency_to_match) {
         printf("%-2ld %s\n", *presidency, president);
         return false;
     }
@@ -27,8 +24,8 @@ int main(int argc, char **argv) {
         fprintf(stderr, "missing argument for presidency");
         return EXIT_FAILURE;
     }
-    presidency_to_find = strtol(argv[1], NULL, 10);
-    if (presidency_to_find == 0L) {
+    presidency_to_match = strtol(argv[1], NULL, 10);
+    if (presidency_to_match == 0L) {
         fprintf(stderr, "failed to convert %s as a presidency\n", argv[1]);
         return EXIT_FAILURE;
     }
