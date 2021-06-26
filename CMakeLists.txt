@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.19)
+#cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.16)
 project(data_structures_in_c C)
 
 set(CMAKE_C_STANDARD 99)
