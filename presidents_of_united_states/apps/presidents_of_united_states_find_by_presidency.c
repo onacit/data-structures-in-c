@@ -21,19 +21,15 @@ bool find_by_presidency(long *presidency, char *president) {
 
 int main(int argc, char **argv) {
     if (argc == 1) {
-        fprintf(stderr, "missing argument for presidency");
+        fprintf(stderr, "missing an argument for presidency");
         return EXIT_FAILURE;
     }
     presidency_to_match = strtol(argv[1], NULL, 10);
     if (presidency_to_match == 0L) {
-        fprintf(stderr, "failed to convert %s as a presidency\n", argv[1]);
+        fprintf(stderr, "failed to convert %s to a presidency\n", argv[1]);
         return EXIT_FAILURE;
     }
-    if (presidents_of_united_states_consume(find_by_presidency) != EXIT_SUCCESS) {
-        fprintf(stderr, "consuming failed\n");
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
+    return presidents_of_united_states_consume_while(find_by_presidency);
 }
 
 

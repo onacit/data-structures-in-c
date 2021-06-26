@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "presidents_of_united_states.h"
+#include "presidents_of_united_states_misc.h"
 
 bool accept(struct president_of_united_state_iterator *iterator, long *presidency, char *president) {
     assert(iterator != NULL);
@@ -21,7 +22,6 @@ bool accept(struct president_of_united_state_iterator *iterator, long *presidenc
     }
     environment->president = reallocated;
     environment->president = strcpy(environment->president, president);
-//    printf("%-2ld %s\n", *presidency, president);
     return true;
 }
 
@@ -40,10 +40,11 @@ int main() {
     president->president = NULL;
     iterator->environment = president;
     iterator->accept = accept;
-    if (presidents_of_united_states_iterate(iterator) == EXIT_SUCCESS) {
-        printf("%s is the latest president of United States.\n", president->president);
-    } else {
-        fprintf (stderr, "iteration failed\n");
+    if (presidents_of_united_states_iterate_while(iterator) == EXIT_SUCCESS) {
+        char s[5];
+        const int l = presidency_to_ordinal_suffixed(s, president->presidency);
+        assert (l >= 3 && l < 5); // '_st' ~ '__th'
+        printf("%s is the %s and current president of the United States.\n", president->president, s);
     }
     free(president->president);
     president->president = NULL;

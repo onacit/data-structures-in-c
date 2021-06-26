@@ -7,7 +7,7 @@
 
 #include <stdbool.h>
 
-int presidents_of_united_states_consume(bool (*accept)(long *presidency, char *president));
+int presidents_of_united_states_consume_while(bool (*accept)(long *presidency, char *president));
 
 struct president_of_united_state {
     long presidency;
@@ -19,6 +19,6 @@ struct president_of_united_state_iterator {
     bool (*accept)(struct president_of_united_state_iterator *iterator, long *presidency, char *president);
 };
 
-int presidents_of_united_states_iterate(struct president_of_united_state_iterator *iterator);
+int presidents_of_united_states_iterate_while(struct president_of_united_state_iterator *iterator);
 
 #endif //DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H

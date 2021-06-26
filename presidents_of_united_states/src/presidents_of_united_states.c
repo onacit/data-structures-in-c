@@ -10,7 +10,7 @@
 
 static char filename[] = "presidents_of_united_states.txt";
 
-int presidents_of_united_states_consume(bool (*const accept)(long *, char *)) {
+int presidents_of_united_states_consume_while(bool (*const accept)(long *, char *)) {
     assert(accept != NULL);
     FILE *stream;
     if ((stream = fopen(filename, "r")) == NULL) {
@@ -18,7 +18,7 @@ int presidents_of_united_states_consume(bool (*const accept)(long *, char *)) {
         return EXIT_FAILURE;
     }
     char buf[26];
-    const int len = sizeof buf / sizeof (char);
+    const int len = (sizeof buf / sizeof (char));
     long presidency;
     char *president;
     while (fgets(buf, len, stream)) {
@@ -36,7 +36,7 @@ int presidents_of_united_states_consume(bool (*const accept)(long *, char *)) {
     return EXIT_SUCCESS;
 }
 
-int presidents_of_united_states_iterate(struct president_of_united_state_iterator *const iterator) {
+int presidents_of_united_states_iterate_while(struct president_of_united_state_iterator *iterator) {
     assert(iterator != NULL);
     FILE *stream;
     if ((stream = fopen(filename, "r")) == NULL) {
@@ -61,7 +61,3 @@ int presidents_of_united_states_iterate(struct president_of_united_state_iterato
     }
     return EXIT_SUCCESS;
 }
-
-
-
-

@@ -14,4 +14,5 @@ add_executable(singly_linked_node_test singly_linked_node_test.c)
 
 add_test(NAME SinglyLinkedNodeTest COMMAND singly_linked_node_test)
 
+add_subdirectory(miscellaneous)
 add_subdirectory(presidents_of_united_states)

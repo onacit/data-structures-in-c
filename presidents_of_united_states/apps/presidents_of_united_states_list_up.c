@@ -4,22 +4,24 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "presidents_of_united_states.h"
+#include "presidents_of_united_states_misc.h"
 
 bool print(long *presidency, char *president) {
     assert(presidency != NULL);
     assert(president != NULL);
-    printf("%2ld %s\n", *presidency, president);
+    if (false) {
+        printf("%2ld %s\n", *presidency, president);
+    } else {
+        char s[5];
+        const int l = presidency_to_ordinal_suffixed(s, *presidency);
+        printf("The %s president of the United States: %s\n", s, president);
+    }
     return true;
 }
 
 int main() {
-    if (presidents_of_united_states_consume(print) != EXIT_SUCCESS) {
-        fprintf(stderr, "consuming failed\n");
-        return EXIT_FAILURE;
-    }
-    return EXIT_SUCCESS;
+    return presidents_of_united_states_consume_while(print);
 }
 
 
