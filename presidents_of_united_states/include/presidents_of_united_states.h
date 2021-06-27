@@ -15,7 +15,7 @@ struct president_of_united_state {
 };
 
 struct president_of_united_state_iterator {
-    void * environment;
+    void *environment;
     bool (*accept)(struct president_of_united_state_iterator *iterator, long *presidency, char *president);
 };
 
