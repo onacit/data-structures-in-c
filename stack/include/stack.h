@@ -9,7 +9,7 @@ struct stack {
     struct singly_linked_list *list;
 };
 
-struct stack * stack_alloc();
+struct stack * stack();
 
 void stack_free(struct stack *s, void (*a)(void *));
 

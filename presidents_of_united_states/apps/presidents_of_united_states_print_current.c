@@ -9,12 +9,11 @@
 #include "presidents_of_united_states.h"
 #include "presidents_of_united_states_misc.h"
 
-bool accept(struct president_of_united_state_iterator *iterator, long *presidency, char *president) {
+bool current(struct president_of_united_state_iterator *iterator, long presidency, char *president) {
     assert(iterator != NULL);
-    assert(presidency != NULL);
     assert(president != NULL);
     struct president_of_united_state *environment = iterator->environment;
-    environment->presidency = *presidency;
+    environment->presidency = presidency;
     void *const reallocated = realloc(environment->president, strlen(president) + 1);
     if (reallocated == NULL) {
         fprintf(stderr, "failed to reallocate %p for %s\n", environment->president, president);
@@ -39,7 +38,7 @@ int main() {
     }
     president->president = NULL;
     iterator->environment = president;
-    iterator->accept = accept;
+    iterator->accept = current;
     if (presidents_of_united_states_iterate_while(iterator) == EXIT_SUCCESS) {
         char s[5];
         const int l = presidency_to_ordinal_suffixed(s, president->presidency);

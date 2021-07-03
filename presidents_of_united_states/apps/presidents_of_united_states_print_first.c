@@ -4,17 +4,19 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <presidents_of_united_states_misc.h>
 #include "presidents_of_united_states.h"
 
-bool print(long *const presidency, char *const president) {
-    assert(presidency != NULL);
+bool first(long presidency, char * const president) {
     assert(president != NULL);
-    printf("%s was the first president of the United States.\n", president);
+    char s[4];
+    presidency_to_ordinal_suffixed(s, presidency);
+    printf("%s was the %s president of the United States.\n", president, s);
     return false;
 }
 
 int main() {
-    return presidents_of_united_states_consume_while(print);
+    return presidents_of_united_states_consume_while(first);
 }
 
 

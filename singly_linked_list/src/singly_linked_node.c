@@ -4,16 +4,16 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include "../include/singly_linked_node.h"
+#include "singly_linked_node.h"
 
 struct singly_linked_node * singly_linked_node_alloc(void *const data) {
-    struct singly_linked_node *n = malloc(sizeof(struct singly_linked_node));
-    if (n == NULL) {
+    struct singly_linked_node *node = malloc(sizeof(struct singly_linked_node));
+    if (node == NULL) {
         return NULL;
     }
-    n->next = NULL;
-    n->data = data;
-    return n;
+    node->next = NULL;
+    node->data = data;
+    return node;
 }
 
 void * singly_linked_node_free(struct singly_linked_node *node) {

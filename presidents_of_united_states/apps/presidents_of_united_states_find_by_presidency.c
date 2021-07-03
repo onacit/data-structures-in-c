@@ -9,11 +9,10 @@
 
 static long presidency_to_match;
 
-bool find_by_presidency(long *presidency, char *president) {
-    assert(presidency != NULL);
+bool find_by_presidency(long presidency, char *president) {
     assert(president != NULL);
-    if (*presidency == presidency_to_match) {
-        printf("%-2ld %s\n", *presidency, president);
+    if (presidency == presidency_to_match) {
+        printf("%-2ld %s\n", presidency, president);
         return false;
     }
     return true;

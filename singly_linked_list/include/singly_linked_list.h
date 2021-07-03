@@ -12,7 +12,7 @@ struct singly_linked_list {
 
 struct singly_linked_list * singly_linked_list_alloc();
 
-void singly_linked_list_free(struct singly_linked_list *l, void (*a)(void *));
+void singly_linked_list_free(struct singly_linked_list *l, void (*f)(void *));
 
 bool singly_linked_list_empty(struct singly_linked_list *l);
 
