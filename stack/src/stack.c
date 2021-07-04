@@ -12,7 +12,7 @@ struct stack * stack() {
     if (s == NULL) {
         return NULL;
     }
-    s->list = singly_linked_list_alloc();
+    s->list = singly_linked_list();
     if (s->list == NULL) {
         stack_free(s, NULL);
         return NULL;
@@ -20,9 +20,9 @@ struct stack * stack() {
     return s;
 }
 
-void stack_free(struct stack *s, void (*a)(void *)) {
+void stack_free(struct stack *s, void (*f)(void *)) {
     assert(s != NULL);
-    singly_linked_list_free(s->list, a);
+    singly_linked_list_free(s->list, f);
     s->list = NULL;
     free(s);
 }

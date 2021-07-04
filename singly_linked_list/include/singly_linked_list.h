@@ -10,7 +10,7 @@ struct singly_linked_list {
     struct singly_linked_node *head;
 };
 
-struct singly_linked_list * singly_linked_list_alloc();
+struct singly_linked_list * singly_linked_list();
 
 void singly_linked_list_free(struct singly_linked_list *l, void (*f)(void *));
 

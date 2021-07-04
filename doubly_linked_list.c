@@ -28,7 +28,7 @@ struct doubly_linked_node* doubly_linked_list_insert_node(struct doubly_linked_l
 //        return NULL;
 //    }
 //    accept->prev = NULL;
-//    struct singly_linked_node *s = malloc(sizeof(struct singly_linked_node_alloc));
+//    struct singly_linked_node *s = malloc(sizeof(struct singly_linked_node));
 //    if (s == NULL) {
 //        free(accept);
 //        return NULL;

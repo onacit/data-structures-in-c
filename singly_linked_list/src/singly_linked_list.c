@@ -8,9 +8,6 @@
 #include <stdlib.h>
 #include "singly_linked_list.h"
 
-static size_t *found_index;
-static struct singly_linked_node* found_node;
-
 struct singly_linked_node* node(struct singly_linked_list *l, size_t i) {
     assert(l != NULL);
     struct singly_linked_node *n = l->head;
@@ -22,10 +19,9 @@ struct singly_linked_node* node(struct singly_linked_list *l, size_t i) {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-struct singly_linked_list * singly_linked_list_alloc() {
+struct singly_linked_list * singly_linked_list() {
     struct singly_linked_list *l = malloc(sizeof(struct singly_linked_list));
     if (l == NULL) {
-        fprintf(stderr, "failed to allocate memory for a singly_linked_list");
         return NULL;
     }
     l->head = NULL;
@@ -45,7 +41,7 @@ void singly_linked_list_free(struct singly_linked_list *l, void (*f)(void *)) {
         n->next = NULL;
         singly_linked_node_free(n);
     }
-    free(l); // != (*f)
+    free(l);
 }
 
 bool singly_linked_list_empty(struct singly_linked_list *l) {
@@ -64,9 +60,8 @@ size_t singly_linked_list_size(struct singly_linked_list *l) {
 
 int singly_linked_list_insert(struct singly_linked_list *l, size_t i, void *d) {
     assert(l != NULL);
-    struct singly_linked_node *n = singly_linked_node_alloc(d);
+    struct singly_linked_node *n = singly_linked_node(d);
     if (n == NULL) {
-        fprintf(stderr, "failed to allocate memory for a singly_linked_node");
         return EXIT_FAILURE;
     }
     if (i == 0) {
@@ -93,8 +88,7 @@ void * singly_linked_list_delete(struct singly_linked_list *l, size_t i) {
         return singly_linked_node_free(h);
     }
     struct singly_linked_node *p = node(l, i - 1);
-    struct singly_linked_node *n = singly_linked_node_unlink_next(p);
-    return singly_linked_node_free(n);
+    return singly_linked_node_unlink_next(p);
 }
 
 void singly_linked_list_traverse(struct singly_linked_list *l, void (*a)(void *)) {

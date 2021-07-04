@@ -11,7 +11,7 @@ struct stack {
 
 struct stack * stack();
 
-void stack_free(struct stack *s, void (*a)(void *));
+void stack_free(struct stack *s, void (*f)(void *));
 
 int stack_push(struct stack *s, void *d);
 

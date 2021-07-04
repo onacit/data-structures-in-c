@@ -12,13 +12,13 @@ struct singly_linked_node {
     void *data;
 };
 
-struct singly_linked_node * singly_linked_node_alloc(void *data);
+struct singly_linked_node * singly_linked_node(void *d);
 
-void * singly_linked_node_free(struct singly_linked_node *node);
+void * singly_linked_node_free(struct singly_linked_node *n);
 
-void singly_linked_node_link_next(struct singly_linked_node *node, struct singly_linked_node *next);
+struct singly_linked_node * singly_linked_node_link_next(struct singly_linked_node *p, void *d);
 
-struct singly_linked_node * singly_linked_node_unlink_next(struct singly_linked_node *node);
+void * singly_linked_node_unlink_next(struct singly_linked_node *p);
 
 struct singly_linked_node * singly_linked_node_find(struct singly_linked_node *node, bool (*test)(void *));
 
