@@ -45,15 +45,15 @@ void * singly_linked_node_unlink_next(struct singly_linked_node *p) {
     return singly_linked_node_free(n);
 }
 
-struct singly_linked_node * singly_linked_node_find(struct singly_linked_node *node, bool (*test)(void *)) {
-    assert(node != NULL);
-    assert(test != NULL);
-    for (struct singly_linked_node *n = node; n != NULL; n = n->next) {
-        if ((*test)(n->data)) {
-            return n;
-        }
-    }
-    return NULL;
-}
+//struct singly_linked_node * singly_linked_node_find(struct singly_linked_node *node, bool (*test)(void *)) {
+//    assert(node != NULL);
+//    assert(test != NULL);
+//    for (struct singly_linked_node *n = node; n != NULL; n = n->next) {
+//        if ((*test)(n->data)) {
+//            return n;
+//        }
+//    }
+//    return NULL;
+//}
 
 
