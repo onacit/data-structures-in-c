@@ -14,6 +14,12 @@ struct president_of_united_state {
     char *president;
 };
 
+struct president_of_united_state * president_of_united_states(long presidency, char *president);
+
+void president_of_united_states_free(struct president_of_united_state *p);
+
+void president_of_united_states_free_void(void *p);
+
 struct president_of_united_state_iterator {
     void *environment;
     bool (*accept)(struct president_of_united_state_iterator *iterator, long presidency, char *president);

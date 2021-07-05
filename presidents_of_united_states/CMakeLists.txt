@@ -2,9 +2,18 @@ include_directories(include ../miscellaneous/include)
 
 link_libraries(miscellaneous)
 
-add_library(presidents_of_united_states
-        include/presidents_of_united_states.h src/presidents_of_united_states.c
-        include/presidents_of_united_states_misc.h src/presidents_of_united_states_misc.c)
+set(
+        RESOURCE_FILES
+        resourcefile.txt
+)
+
+add_library(
+        presidents_of_united_states
+        include/presidents_of_united_states.h
+        src/presidents_of_united_states.c
+        include/presidents_of_united_states_misc.h
+        src/presidents_of_united_states_misc.c
+        )
 
 add_executable(presidents_of_united_states_find_by_presidency
         include/presidents_of_united_states.h
@@ -39,8 +48,10 @@ add_executable(presidents_of_united_states_print_first
         src/presidents_of_united_states_misc.c
         apps/presidents_of_united_states_print_first.c)
 
+
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/presidents_of_united_states.txt
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+#        DESTINATION ${CMAKE_BINARY_DIR})
 
 #set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include
 #        CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)

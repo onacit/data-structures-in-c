@@ -22,6 +22,8 @@ int singly_linked_list_insert(struct singly_linked_list *l, size_t i, void *d);
 
 void * singly_linked_list_delete(struct singly_linked_list *l, size_t i);
 
+void singly_linked_list_consume_while(struct singly_linked_list *l, bool (*a)(void *));
+
 void singly_linked_list_traverse(struct singly_linked_list *l, void (*a)(void *));
 
 void * singly_linked_list_get_data(struct singly_linked_list *l, size_t i);

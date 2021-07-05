@@ -143,6 +143,17 @@ void * singly_linked_list_delete(struct singly_linked_list *l, size_t i) {
     return singly_linked_node_unlink_next(p);
 }
 
+void singly_linked_list_consume_while(struct singly_linked_list *l, bool (*a)(void *)) {
+    assert (l != NULL);
+    assert (a != NULL);
+    for (struct singly_linked_node *n = l->head; n != NULL; n = n->next) {
+        if (!(*a)(n->data)) {
+            return;
+        }
+    }
+}
+
+
 void singly_linked_list_traverse(struct singly_linked_list *l, void (*a)(void *)) {
     assert(l != NULL);
     assert(a != NULL);
@@ -160,7 +171,7 @@ void * singly_linked_list_get_data(struct singly_linked_list *l, size_t i) {
 void * singly_linked_list_set_data(struct singly_linked_list *l, size_t i, void *d) {
     struct singly_linked_node* n = node(l, i);
     assert(n != NULL);
-    void *prev = n->data;
+    void *p = n->data;
     n->data = d;
-    return prev;
+    return p;
 }
