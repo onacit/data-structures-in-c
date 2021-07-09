@@ -8,22 +8,22 @@
 
 struct list {
 
-    void *environment;
+    void *env;
 
     size_t (*size)(struct list *l);
     bool (*size_zero_)(struct list *l);
 
-    bool (*insert)(struct list *l, size_t i, void *d);
-    bool (*insert_first_)(struct list *l, void *d);
-    bool (*insert_last_)(struct list *l, void *d);
+    void (*insert)(struct list *l, size_t i, void *d);
+    void (*insert_first_)(struct list *l, void *d);
+    void (*insert_last_)(struct list *l, void *d);
 
-    bool (*delete)(struct list *l, size_t i, void (*f)(void *));
-    bool (*delete_first_)(struct list *l, void (*f)(void *));
-    bool (*delete_last_)(struct list *l, void (*f)(void *));
+    void (*delete)(struct list *l, size_t i, void (*f)(void *));
+    void (*delete_first_)(struct list *l, void (*f)(void *));
+    void (*delete_last_)(struct list *l, void (*f)(void *));
 
-    bool (*access)(struct list *l, size_t i, void (*f)(void **));
-    bool (*access_first)(struct list *l, void (*f)(void **));
-    bool (*access_last)(struct list *l, void (*f)(void **));
+    void (*access)(struct list *l, size_t i, void (*f)(void **));
+    void (*access_first)(struct list *l, void (*f)(void **));
+    void (*access_last)(struct list *l, void (*f)(void **));
 };
 
 
@@ -32,25 +32,25 @@ size_t list_size(struct list *l);
 bool list_empty(struct list *l);
 
 
-bool list_insert(struct list *l, size_t i, void *d);
+void list_insert(struct list *l, size_t i, void *d);
 
-bool list_push_front(struct list *l, void *d);
+void list_insert_first(struct list *l, void *d);
 
-bool list_push_back(struct list *l, void *d);
-
-
-bool list_delete(struct list *l, size_t i, void (*f)(void *));
-
-bool list_pop_front(struct list *l, void (*f)(void *));
-
-bool list_pop_back(struct list *l, void (*f)(void *));
+void list_insert_last(struct list *l, void *d);
 
 
-bool list_access(struct list *l, size_t i, void (*f)(void **));
+void list_delete(struct list *l, size_t i, void (*f)(void *));
 
-bool list_front(struct list *l, void (*f)(void **));
+void list_delete_first(struct list *l, void (*f)(void *));
 
-bool list_back(struct list *l, void (*f)(void **));
+void list_delete_last(struct list *l, void (*f)(void *));
+
+
+void list_access(struct list *l, size_t i, void (*f)(void **));
+
+void list_access_first(struct list *l, void (*f)(void **));
+
+void list_access_last(struct list *l, void (*f)(void **));
 
 
 #endif //DATA_STRUCTURES_IN_C_LIST_H

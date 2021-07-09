@@ -4,6 +4,7 @@
 
 #include <assert.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "list.h"
 
 
@@ -21,12 +22,12 @@ bool list_empty(struct list *l) {
 }
 
 
-bool list_insert(struct list *l, size_t i, void *d) {
+void list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     return l->insert(l, i, d);
 }
 
-bool list_push_front(struct list *l, void *d) {
+void list_insert_first(struct list *l, void *d) {
     assert(l != NULL);
     if (l->insert_first_ != NULL) {
         return l->insert_first_(l, d);
@@ -34,7 +35,7 @@ bool list_push_front(struct list *l, void *d) {
     return list_insert(l, 0, d);
 }
 
-bool list_push_back(struct list *l, void *d) {
+void list_insert_last(struct list *l, void *d) {
     assert(l != NULL);
     if (l->insert_last_ != NULL) {
         return l->insert_last_(l, d);
@@ -44,13 +45,13 @@ bool list_push_back(struct list *l, void *d) {
 }
 
 
-bool list_delete(struct list *l, size_t i, void (*f)(void *)) {
+void list_delete(struct list *l, size_t i, void (*f)(void *)) {
     assert(l != NULL);
     assert(f != NULL);
     return l->delete(l, i, f);
 }
 
-bool list_pop_front(struct list *l, void (*f)(void *)) {
+void list_delete_first(struct list *l, void (*f)(void *)) {
     assert(l != NULL);
     assert(f != NULL);
     if (l->delete_first_ != NULL) {
@@ -59,7 +60,7 @@ bool list_pop_front(struct list *l, void (*f)(void *)) {
     return list_delete(l, 0, f);
 }
 
-bool list_pop_back(struct list *l, void (*f)(void *)) {
+void list_delete_last(struct list *l, void (*f)(void *)) {
     if (l->delete_first_ != NULL) {
         return l->delete_last_(l, f);
     }
@@ -68,13 +69,13 @@ bool list_pop_back(struct list *l, void (*f)(void *)) {
 }
 
 
-bool list_access(struct list *l, size_t i, void (*f)(void **)) {
+void list_access(struct list *l, size_t i, void (*f)(void **)) {
     assert(l != NULL);
     assert(f != NULL);
     return l->access(l, i, f);
 }
 
-bool list_front(struct list *l, void (*f)(void **)) {
+void list_access_first(struct list *l, void (*f)(void **)) {
     assert(l != NULL);
     assert(f != NULL);
     if (l->access_first != NULL) {
@@ -83,7 +84,7 @@ bool list_front(struct list *l, void (*f)(void **)) {
     return list_access(l, 0, f);
 }
 
-bool list_back(struct list *l, void (*f)(void **)) {
+void list_access_last(struct list *l, void (*f)(void **)) {
     assert(l != NULL);
     assert(f != NULL);
     if (l->access_last != NULL) {

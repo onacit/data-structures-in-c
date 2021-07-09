@@ -4,13 +4,10 @@
 #ifndef DATA_STRUCTURES_IN_C_ARRAY_LIST_H
 #define DATA_STRUCTURES_IN_C_ARRAY_LIST_H
 
-#include <stdbool.h>
 #include "list.h"
 
-//size_t array_list_size(struct list *l);
-
-//bool array_list_size_zero(struct list *l);
-
 struct list * array_list();
+
+void array_list_free(struct list *l, void (*f)(void *));
 
 #endif //DATA_STRUCTURES_IN_C_ARRAY_LIST_H
