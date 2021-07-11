@@ -4,48 +4,28 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include "singly_linked_list.h"
 #include "stack.h"
 
-struct stack * stack() {
-    struct stack *s = malloc(sizeof(struct stack));
-    if (s == NULL) {
-        return NULL;
-    }
-    s->list = singly_linked_list();
-    if (s->list == NULL) {
-        stack_free(s, NULL);
-        return NULL;
-    }
-    return s;
+size_t stack_size(struct stack *s) {
+    assert(s != NULL);
+    return s->size(s);
 }
 
-void stack_free(struct stack *s, void (*f)(void *)) {
+bool stack_size_zero_(struct stack *s) {
     assert(s != NULL);
-    singly_linked_list_free(s->list, f);
-    s->list = NULL;
-    free(s);
+    if (s->size_zero_ != NULL) {
+        return s->size_zero_(s);
+    }
+    return stack_size(s) == 0;
 }
 
-int stack_push(struct stack *s, void *d) {
+void stack_push(struct stack *s, void *d) {
     assert(s != NULL);
-    return singly_linked_list_insert(s->list, 0, d);
+    s->push(s, d);
 }
 
 void * stack_pop(struct stack *s) {
     assert(s != NULL);
-    return singly_linked_list_delete(s->list, 0);
+    return s->pop(s);
 }
-
-size_t stack_size(struct stack *s) {
-    assert(s != NULL);
-    return singly_linked_list_size(s->list);
-}
-
-bool stack_empty(struct stack *s) {
-    assert(s != NULL);
-    return singly_linked_list_empty(s->list);
-}
-
-
 
