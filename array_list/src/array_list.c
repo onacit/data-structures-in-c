@@ -55,27 +55,34 @@ void array_list_insert_last_(struct list *l, void *d) {
 }
 
 
-void array_list_delete(struct list *l, size_t i, void (*f)(void *)) {
+void * array_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
     assert(i < array_list_size(l));
-    assert(f != NULL);
     struct array_list_env *e = (struct array_list_env *) l->env;
-    (*f)(e->array[i]);
+    void *data = e->array[i];
     for (size_t j = i; j < e->size; j++) {
         e->array[j] = e->array[j + 1];
     }
     e->array[e->size - 1] = NULL;
     e->size = e->size - 1;
+    return data;
 }
 
-void array_list_delete_first_(struct list *l, void (*f)(void *)) {
-    assert(!array_list_size_zero_(l));
-    array_list_delete(l, 0, f);
+void * array_list_delete_first_(struct list *l) {
+    assert(l != NULL);
+    return array_list_delete(l, 0);
 }
 
-void array_list_delete_last_(struct list *l, void (*f)(void *)) {
-    assert(!array_list_size_zero_(l));
-    array_list_delete(l, array_list_size(l) - 1, f);
+void * array_list_delete_last_(struct list *l) {
+    assert(l != NULL);
+    array_list_delete(l, array_list_size(l) - 1);
+}
+
+
+void * array_list_get(struct list *l, size_t i) {
+    assert(l != NULL);
+    struct array_list_env *e = (struct array_list_env *) l->env;
+    return e->array[i];
 }
 
 
@@ -102,7 +109,8 @@ void array_list_free(struct list *l, void (*f)(void *)) {
     assert(l != NULL);
     assert(f != NULL);
     while (!list_size_zero_(l)) {
-        list_delete_last_(l, f);
+        void *data = list_delete_last_(l);
+        (*f)(data);
     }
     struct array_list_env *e = (struct array_list_env *) l->env;
     free(e->array);

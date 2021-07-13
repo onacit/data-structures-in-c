@@ -44,26 +44,24 @@ void list_insert_last_(struct list *l, void *d) {
 }
 
 
-void list_delete(struct list *l, size_t i, void (*f)(void *)) {
+void * list_delete(struct list *l, size_t i) {
     assert(l != NULL);
-    assert(f != NULL);
-    return l->delete(l, i, f);
+    return l->delete(l, i);
 }
 
-void list_delete_first_(struct list *l, void (*f)(void *)) {
+void * list_delete_first_(struct list *l) {
     assert(l != NULL);
-    assert(f != NULL);
     if (l->delete_first_ != NULL) {
-        return l->delete_first_(l, f);
+        return l->delete_first_(l);
     }
-    return list_delete(l, 0, f);
+    return list_delete(l, 0);
 }
 
-void list_delete_last_(struct list *l, void (*f)(void *)) {
+void * list_delete_last_(struct list *l) {
     if (l->delete_first_ != NULL) {
-        return l->delete_last_(l, f);
+        return l->delete_last_(l);
     }
-    return list_delete(l, list_size(l), f);
+    return list_delete(l, list_size(l) - 1);
 }
 
 
@@ -108,29 +106,4 @@ void * list_set_last(struct list *l, void *d) {
         return l->set_last_(l, d);
     }
     return list_set(l, list_size(l) - 1, d);
-}
-
-
-void list_access(struct list *l, size_t i, void (*f)(void *)) {
-    assert(l != NULL);
-    assert(f != NULL);
-    return l->access(l, i, f);
-}
-
-void list_access_first_(struct list *l, void (*f)(void *)) {
-    assert(l != NULL);
-    assert(f != NULL);
-    if (l->access_first != NULL) {
-        return l->access_first(l, f);
-    }
-    return list_access(l, 0, f);
-}
-
-void list_access_last_(struct list *l, void (*f)(void *)) {
-    assert(l != NULL);
-    assert(f != NULL);
-    if (l->access_last != NULL) {
-        return l->access_last(l, f);
-    }
-    return list_access(l, list_size(l) - 1, f);
 }
