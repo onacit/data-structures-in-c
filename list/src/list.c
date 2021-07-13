@@ -67,6 +67,50 @@ void list_delete_last_(struct list *l, void (*f)(void *)) {
 }
 
 
+void * list_get(struct list *l, size_t i) {
+    assert(l != NULL);
+    return l->get(l, i);
+}
+
+void * list_get_first(struct list *l) {
+    assert(l != NULL);
+    if (l->get_first_ != NULL) {
+        return l->get_first_(l);
+    }
+    return list_get(l, 0);
+}
+
+void * list_get_last(struct list *l) {
+    assert(l != NULL);
+    if (l->get_last_ != NULL) {
+        return l->get_last_(l);
+    }
+    return list_get(l, list_size(l) - 1);
+}
+
+
+void * list_set(struct list *l, size_t i, void *d) {
+    assert(l != NULL);
+    return l->set(l, i, d);
+}
+
+void * list_set_first(struct list *l, void *d) {
+    assert(l != NULL);
+    if (l->set_first_ != NULL) {
+        return l->set_first_(l, d);
+    }
+    return list_set(l, 0, d);
+}
+
+void * list_set_last(struct list *l, void *d) {
+    assert(l != NULL);
+    if (l->set_last_ != NULL) {
+        return l->set_last_(l, d);
+    }
+    return list_set(l, list_size(l) - 1, d);
+}
+
+
 void list_access(struct list *l, size_t i, void (*f)(void *)) {
     assert(l != NULL);
     assert(f != NULL);

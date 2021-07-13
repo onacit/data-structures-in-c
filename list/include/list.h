@@ -21,6 +21,14 @@ struct list {
     void (*delete_first_)(struct list *l, void (*f)(void *));
     void (*delete_last_)(struct list *l, void (*f)(void *));
 
+    void * (*get)(struct list *l, size_t i);
+    void * (*get_first_)(struct list *l);
+    void * (*get_last_)(struct list *l);
+
+    void * (*set)(struct list *l, size_t i, void *d);
+    void * (*set_first_)(struct list *l, void *d);
+    void * (*set_last_)(struct list *l, void *d);
+
     void (*access)(struct list *l, size_t i, void (*f)(void *));
     void (*access_first)(struct list *l, void (*f)(void *));
     void (*access_last)(struct list *l, void (*f)(void *));
@@ -44,6 +52,20 @@ void list_delete(struct list *l, size_t i, void (*f)(void *));
 void list_delete_first_(struct list *l, void (*f)(void *));
 
 void list_delete_last_(struct list *l, void (*f)(void *));
+
+
+void * list_get(struct list *l, size_t i);
+
+void * list_get_first(struct list *l);
+
+void * list_get_last(struct list *l);
+
+
+void * list_set(struct list *l, size_t i, void *d);
+
+void * list_set_first(struct list *l, void *d);
+
+void * list_set_last(struct list *l, void *d);
 
 
 void list_access(struct list *l, size_t i, void (*f)(void *));
