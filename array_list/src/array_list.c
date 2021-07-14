@@ -85,6 +85,22 @@ void * array_list_get(struct list *l, size_t i) {
     return e->array[i];
 }
 
+void * array_list_get_first_(struct list *l) {
+    assert(l != NULL);
+    if (l->get_first_ != NULL) {
+        return l->get_first_(l);
+    }
+    return array_list_get(l, 0);
+}
+
+void * array_list_get_last_(struct list *l) {
+    assert(l != NULL);
+    if (l->get_last_ != NULL) {
+        return l->get_last_(l);
+    }
+    return array_list_get(l, array_list_size(l) - 1);
+}
+
 
 struct list * array_list() {
     struct array_list_env *e = malloc(sizeof(struct array_list_env));
@@ -102,6 +118,12 @@ struct list * array_list() {
     l->env = e;
     l->size = array_list_size;
     l->size_zero_ = array_list_size_zero_;
+    l->insert = array_list_insert;
+    l->insert_first_ = array_list_insert_first_;
+    l->insert_last_ = array_list_insert_last_;
+    l->delete = array_list_delete;
+    l->delete_first_ = array_list_delete_first_;
+    l->delete_last_ = array_list_delete_last_;
     return l;
 }
 
