@@ -14,6 +14,8 @@ add_library(
 )
 
 add_executable(
-        a
-        apps/a.c
+        array_list_random_integers
+        include/array_list.h
+        src/array_list.c
+        apps/array_list_random_integers.c
 )

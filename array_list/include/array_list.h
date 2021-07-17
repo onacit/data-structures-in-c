@@ -6,8 +6,10 @@
 
 #include "list.h"
 
+
 struct list * array_list();
 
-void array_list_free(struct list *l, void (*f)(void *));
+void array_list_free(struct list *l);
+
 
 #endif //DATA_STRUCTURES_IN_C_ARRAY_LIST_H

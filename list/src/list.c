@@ -46,6 +46,7 @@ void list_insert_last_(struct list *l, void *d) {
 
 void * list_delete(struct list *l, size_t i) {
     assert(l != NULL);
+    assert(!list_size_zero_(l));
     return l->delete(l, i);
 }
 
@@ -58,6 +59,7 @@ void * list_delete_first_(struct list *l) {
 }
 
 void * list_delete_last_(struct list *l) {
+    assert(l != NULL);
     if (l->delete_first_ != NULL) {
         return l->delete_last_(l);
     }
@@ -67,6 +69,7 @@ void * list_delete_last_(struct list *l) {
 
 void * list_get(struct list *l, size_t i) {
     assert(l != NULL);
+    assert(!list_size_zero_(l));
     return l->get(l, i);
 }
 
@@ -89,6 +92,7 @@ void * list_get_last(struct list *l) {
 
 void * list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
+    assert(!list_size_zero_(l));
     return l->set(l, i, d);
 }
 
