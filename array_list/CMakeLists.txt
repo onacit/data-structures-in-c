@@ -17,7 +17,7 @@ add_executable(
         array_list_insert_first_delete_first
         include/array_list.h
         src/array_list.c
-        apps/array_list_insert_first_delete_last.c
+        apps/array_list_insert_first_delete_first.c
 )
 
 add_executable(
