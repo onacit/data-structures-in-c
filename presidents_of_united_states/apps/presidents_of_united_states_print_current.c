@@ -32,7 +32,7 @@ int main() {
     }
     struct president_of_united_state *president = malloc(sizeof(struct president_of_united_state));
     if (president == NULL) {
-        fprintf(stderr, "failed to allocate an env");
+        fprintf(stderr, "failed to allocate an env_");
         free(iterator);
         return EXIT_FAILURE;
     }

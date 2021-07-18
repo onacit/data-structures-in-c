@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "array_list.h"
 
 #define NDEBUG
@@ -13,6 +14,7 @@ int main() {
     if (l == NULL) {
         return EXIT_FAILURE;
     }
+    srand(time(NULL));
     int size = 4;
     for (int i = 0; i < size; i++) {
         int *d = malloc(sizeof(int));

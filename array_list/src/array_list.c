@@ -8,7 +8,7 @@
 #include "array_list.h"
 
 
-struct array_list_env {
+struct array_list_env_ {
     void **array;
     size_t capacity;
     size_t size;
@@ -18,7 +18,7 @@ struct array_list_env {
 
 size_t array_list_size(struct list *l) {
     assert(l != NULL);
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     return e->size;
 }
 
@@ -31,7 +31,7 @@ bool array_list_size_zero_(struct list *l) {
 void array_list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     assert(i <= array_list_size(l));
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     if (e->size == e->capacity) {
         e->capacity = e->capacity == 0 ? 1 : e->capacity << 1;
         e->array = realloc(e->array, sizeof(void *) * (e->capacity));
@@ -58,7 +58,7 @@ void array_list_insert_last_(struct list *l, void *d) {
 void * array_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
     assert(i < array_list_size(l));
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     void *d = e->array[i];
     for (size_t j = i; j < e->size - 1; j++) {
         e->array[j] = e->array[j + 1];
@@ -83,7 +83,7 @@ void * array_list_delete_last_(struct list *l) {
 void * array_list_get(struct list *l, size_t i) {
     assert(l != NULL);
     assert(i < array_list_size(l));
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     return e->array[i];
 }
 
@@ -101,7 +101,7 @@ void * array_list_get_last_(struct list *l) {
 
 void * array_list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     void *p = e->array[i];
     e->array[i] = d;
     return p;
@@ -120,7 +120,7 @@ void * array_list_set_last_(struct list *l, void *d) {
 // -----------------------------------------------------------------------------
 
 struct list * array_list() {
-    struct array_list_env *e = malloc(sizeof(struct array_list_env));
+    struct array_list_env_ *e = malloc(sizeof(struct array_list_env_));
     if (e == NULL) {
         return NULL;
     }
@@ -132,7 +132,7 @@ struct list * array_list() {
         free(e);
         return NULL;
     }
-    l->env = e;
+    l->env_ = e;
     l->size = array_list_size;
     l->size_zero_ = array_list_size_zero_;
     l->insert = array_list_insert;
@@ -153,7 +153,7 @@ struct list * array_list() {
 void array_list_free(struct list *l) {
     assert(l != NULL);
     assert(array_list_size_zero_(l));
-    struct array_list_env *e = (struct array_list_env *) l->env;
+    struct array_list_env_ *e = (struct array_list_env_ *) l->env_;
     free(e->array);
     free(l);
 }
