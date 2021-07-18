@@ -14,8 +14,29 @@ add_library(
 )
 
 add_executable(
-        array_list_random_integers
+        array_list_insert_first_delete_first
         include/array_list.h
         src/array_list.c
-        apps/array_list_random_integers.c
+        apps/array_list_insert_first_delete_last.c
+)
+
+add_executable(
+        array_list_insert_first_delete_last
+        include/array_list.h
+        src/array_list.c
+        apps/array_list_insert_first_delete_last.c
+)
+
+add_executable(
+        array_list_insert_last_delete_first
+        include/array_list.h
+        src/array_list.c
+        apps/array_list_insert_last_delete_first.c
+)
+
+add_executable(
+        array_list_insert_last_delete_last
+        include/array_list.h
+        src/array_list.c
+        apps/array_list_insert_last_delete_last.c
 )
