@@ -26,7 +26,7 @@ struct singly_linked_node* node(struct singly_linked_list *l, size_t i) {
 /**
  * @details Returns the first node of specified list.
  * @param l the list whose first node is returned.
- * @return the first of the list; @c NULL if the list is size_zero_.
+ * @return the first of the list; @c NULL if the list is empty.
  */
 struct singly_linked_node* head(struct singly_linked_list *l) {
     assert(l != NULL);
@@ -36,7 +36,7 @@ struct singly_linked_node* head(struct singly_linked_list *l) {
 /**
  * @details Returns the last node of specified list.
  * @param l the list whose last node is returned.
- * @return the last of the list; @c NULL if the list is size_zero_.
+ * @return the last of the list; @c NULL if the list is empty.
  */
 struct singly_linked_node* tail(struct singly_linked_list *l) {
     assert(l != NULL);
@@ -80,9 +80,9 @@ void singly_linked_list_free(struct singly_linked_list *l, void (*f)(void *)) {
 // ---------------------------------------------------------------------------------------------------------------------
 
 /**
- * Checks whether specified list is size_zero_.
+ * Checks whether specified list is empty.
  * @param l the list to check.
- * @return @c true when the list is size_zero_; @c false otherwise.
+ * @return @c true when the list is empty; @c false otherwise.
  */
 bool singly_linked_list_empty(struct singly_linked_list *l) {
     assert(l != NULL);

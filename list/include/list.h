@@ -12,7 +12,7 @@ struct list {
     void *env_;
 
     size_t (*size)(struct list *l);
-    bool (*size_zero_)(struct list *l);
+    bool (*empty_)(struct list *l);
 
     void (*insert)(struct list *l, size_t i, void *d);
     void (*insert_first_)(struct list *l, void *d);
@@ -53,7 +53,7 @@ struct list_iterator {
 
 size_t list_size(struct list *l);
 
-bool list_size_zero_(struct list *l);
+bool list_empty_(struct list *l);
 
 
 void list_insert(struct list *l, size_t i, void *d);

@@ -134,7 +134,7 @@ struct list * array_list() {
     }
     l->env_ = e;
     l->size = array_list_size;
-    l->size_zero_ = array_list_size_zero_;
+    l->empty_ = array_list_size_zero_;
     l->insert = array_list_insert;
     l->insert_first_ = array_list_insert_first_;
     l->insert_last_ = array_list_insert_last_;

@@ -13,10 +13,10 @@ size_t list_size(struct list *l) {
     return l->size(l);
 }
 
-bool list_size_zero_(struct list *l) {
+bool list_empty_(struct list *l) {
     assert(l != NULL);
-    if (l->size_zero_ != NULL) {
-        return l->size_zero_(l);
+    if (l->empty_ != NULL) {
+        return l->empty_(l);
     }
     return l->size(l) == 0;
 }
@@ -46,7 +46,7 @@ void list_insert_last_(struct list *l, void *d) {
 
 void * list_delete(struct list *l, size_t i) {
     assert(l != NULL);
-    assert(!list_size_zero_(l));
+    assert(!list_empty_(l));
     return l->delete(l, i);
 }
 
@@ -69,7 +69,7 @@ void * list_delete_last_(struct list *l) {
 
 void * list_get(struct list *l, size_t i) {
     assert(l != NULL);
-    assert(!list_size_zero_(l));
+    assert(!list_empty_(l));
     return l->get(l, i);
 }
 
@@ -92,7 +92,7 @@ void * list_get_last(struct list *l) {
 
 void * list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
-    assert(!list_size_zero_(l));
+    assert(!list_empty_(l));
     return l->set(l, i, d);
 }
 

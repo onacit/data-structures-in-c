@@ -11,10 +11,10 @@ size_t stack_size(struct stack *s) {
     return s->size(s);
 }
 
-bool stack_size_zero_(struct stack *s) {
+bool empty(struct stack *s) {
     assert(s != NULL);
-    if (s->size_zero_ != NULL) {
-        return s->size_zero_(s);
+    if (s->empty != NULL) {
+        return s->empty(s);
     }
     return stack_size(s) == 0;
 }

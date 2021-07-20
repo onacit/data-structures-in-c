@@ -12,7 +12,7 @@ struct stack {
     void * env;
 
     size_t (*size)(struct stack *);
-    bool (*size_zero_)(struct stack *);
+    bool (*empty)(struct stack *);
 
     void (*push)(struct stack *, void *);
     void * (*pop)(struct stack *);
@@ -20,7 +20,7 @@ struct stack {
 
 size_t stack_size(struct stack *s);
 
-bool stack_size_zero_(struct stack *s);
+bool empty(struct stack *s);
 
 void stack_push(struct stack *s, void *d);
 
