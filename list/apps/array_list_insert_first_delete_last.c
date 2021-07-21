@@ -19,12 +19,12 @@ int main() {
     for (int i = 0; i < size; i++) {
         int *d = malloc(sizeof(int));
         *d = rand();
-        list_insert_first_(l, d);
+        list_insert_first(l, d);
         printf("inserted: %d\n", *d);
     }
     printf("size: %zu\n", list_size(l));
     for (int i = 0; i < size; i++) {
-        int *d = list_delete_last_(l);
+        int *d = list_delete_last(l);
         printf("deleted: %d\n", *d);
         free(d);
     }

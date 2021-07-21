@@ -7,32 +7,6 @@
 #include <stdbool.h>
 
 
-struct list {
-
-    void *env_;
-
-    size_t (*size)(struct list *l);
-    bool (*empty_)(struct list *l);
-
-    void (*insert)(struct list *l, size_t i, void *d);
-    void (*insert_first_)(struct list *l, void *d);
-    void (*insert_last_)(struct list *l, void *d);
-
-    void * (*delete)(struct list *l, size_t i);
-    void * (*delete_first_)(struct list *l);
-    void * (*delete_last_)(struct list *l);
-
-    void * (*get)(struct list *l, size_t i);
-    void * (*get_first_)(struct list *l);
-    void * (*get_last_)(struct list *l);
-
-    void * (*set)(struct list *l, size_t i, void *d);
-    void * (*set_first_)(struct list *l, void *d);
-    void * (*set_last_)(struct list *l, void *d);
-
-    //struct list_iterator * (*iterator)(struct list *l, size_t i);
-};
-
 struct list_iterator {
 
     void *env_;
@@ -51,23 +25,52 @@ struct list_iterator {
 };
 
 
+struct list {
+
+    void *env_;
+
+    size_t (*size)(struct list *l);
+    bool (*empty)(struct list *l);
+
+    void (*insert)(struct list *l, size_t i, void *d);
+    void (*insert_first)(struct list *l, void *d);
+    void (*insert_last)(struct list *l, void *d);
+
+    void * (*delete)(struct list *l, size_t i);
+    void * (*delete_first)(struct list *l);
+    void * (*delete_last)(struct list *l);
+
+    void * (*get)(struct list *l, size_t i);
+    void * (*get_first)(struct list *l);
+    void * (*get_last)(struct list *l);
+
+    void * (*set)(struct list *l, size_t i, void *d);
+    void * (*set_first)(struct list *l, void *d);
+    void * (*set_last)(struct list *l, void *d);
+
+    struct list_iterator * (*iterator)(struct list *l, size_t i);
+    struct list_iterator * (*iterator_first)(struct list *l);
+    struct list_iterator * (*iterator_last)(struct list *l);
+};
+
+
 size_t list_size(struct list *l);
 
-bool list_empty_(struct list *l);
+bool list_empty(struct list *l);
 
 
 void list_insert(struct list *l, size_t i, void *d);
 
-void list_insert_first_(struct list *l, void *d);
+void list_insert_first(struct list *l, void *d);
 
-void list_insert_last_(struct list *l, void *d);
+void list_insert_last(struct list *l, void *d);
 
 
 void * list_delete(struct list *l, size_t i);
 
-void * list_delete_first_(struct list *l);
+void * list_delete_first(struct list *l);
 
-void * list_delete_last_(struct list *l);
+void * list_delete_last(struct list *l);
 
 
 void * list_get(struct list *l, size_t i);

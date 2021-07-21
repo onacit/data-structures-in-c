@@ -134,19 +134,19 @@ struct list * array_list() {
     }
     l->env_ = e;
     l->size = array_list_size;
-    l->empty_ = array_list_size_zero_;
+    l->empty = array_list_size_zero_;
     l->insert = array_list_insert;
-    l->insert_first_ = array_list_insert_first_;
-    l->insert_last_ = array_list_insert_last_;
+    l->insert_first = array_list_insert_first_;
+    l->insert_last = array_list_insert_last_;
     l->delete = array_list_delete;
-    l->delete_first_ = array_list_delete_first_;
-    l->delete_last_ = array_list_delete_last_;
+    l->delete_first = array_list_delete_first_;
+    l->delete_last = array_list_delete_last_;
     l->get = array_list_get;
-    l->get_first_ = array_list_get_first_;
-    l->get_last_ = array_list_get_last_;
+    l->get_first = array_list_get_first_;
+    l->get_last = array_list_get_last_;
     l->set = array_list_set;
-    l->set_first_ = array_list_set_first_;
-    l->set_last_ = array_list_set_last_;
+    l->set_first = array_list_set_first_;
+    l->set_last = array_list_set_last_;
     return l;
 }
 

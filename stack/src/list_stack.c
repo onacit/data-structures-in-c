@@ -15,19 +15,19 @@ size_t list_stack_size(struct stack *s) {
 bool list_stack_empty(struct stack *s) {
     assert(s != NULL);
     struct list *l = s->env;
-    return list_empty_(l);
+    return list_empty(l);
 }
 
 void list_stack_push(struct stack *s, void *d) {
     assert(s != NULL);
     struct list *l = s->env;
-    list_insert_first_(l, d);
+    list_insert_first(l, d);
 }
 
 void * list_stack_pop(struct stack *s) {
     assert(s != NULL);
     struct list *l = s->env;
-    return list_delete_first_(l);
+    return list_delete_first(l);
 }
 
 struct stack * list_stack(struct list *l) {

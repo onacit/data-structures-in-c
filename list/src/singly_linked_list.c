@@ -118,13 +118,13 @@ struct list * singly_linked_list() {
     }
     l->env_ = e;
     l->size = singly_linked_list_size;
-    l->empty_ = singly_linked_list_empty;
+    l->empty = singly_linked_list_empty;
     l->insert = singly_linked_list_insert;
-    l->insert_first_ = singly_linked_list_insert_first_;
-    l->insert_last_ = singly_linked_list_insert_last_;
+    l->insert_first = singly_linked_list_insert_first_;
+    l->insert_last = singly_linked_list_insert_last_;
     l->delete = singly_linked_list_delete;
-    l->delete_first_ = singly_linked_list_delete_first_;
-    l->delete_last_ = singly_linked_list_delete_last_;
+    l->delete_first = singly_linked_list_delete_first_;
+    l->delete_last = singly_linked_list_delete_last_;
     return l;
 }
 
