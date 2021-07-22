@@ -14,6 +14,6 @@ enable_testing()
 #add_test(NAME SinglyLinkedNodeTest COMMAND singly_linked_node_test)
 
 add_subdirectory(miscellaneous)
-add_subdirectory(presidents_of_united_states)
+#add_subdirectory(presidents_of_united_states)
 add_subdirectory(list)
 add_subdirectory(stack)

@@ -1,4 +1,5 @@
 include_directories(
+        ../miscellaneous/include
         include
 )
 
