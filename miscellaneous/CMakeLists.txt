@@ -12,10 +12,8 @@ add_library(
         miscellaneous
         include/miscellaneous.h
         include/presidents_of_united_states.h
-        include/presidents_of_united_states_misc.h
         src/miscellaneous.c
         src/presidents_of_united_states.c
-        src/presidents_of_united_states_misc.c
 )
 
 add_executable(
@@ -34,27 +32,27 @@ add_executable(
 
 add_executable(
         presidents_of_united_states_list_up
+        include/miscellaneous.h
         include/presidents_of_united_states.h
-        include/presidents_of_united_states_misc.h
+        src/miscellaneous.c
         src/presidents_of_united_states.c
-        src/presidents_of_united_states_misc.c
         apps/presidents_of_united_states_list_up.c
 )
 
 add_executable(
         presidents_of_united_states_print_current
+        include/miscellaneous.h
         include/presidents_of_united_states.h
-        include/presidents_of_united_states_misc.h
+        src/miscellaneous.c
         src/presidents_of_united_states.c
-        src/presidents_of_united_states_misc.c
         apps/presidents_of_united_states_print_current.c
 )
 
 add_executable(
         presidents_of_united_states_print_first
+        include/miscellaneous.h
         include/presidents_of_united_states.h
-        include/presidents_of_united_states_misc.h
+        src/miscellaneous.c
         src/presidents_of_united_states.c
-        src/presidents_of_united_states_misc.c
         apps/presidents_of_united_states_print_first.c
 )

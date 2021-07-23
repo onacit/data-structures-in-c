@@ -4,7 +4,7 @@ project(data_structures_in_c C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(data_structures_in_c common.h common.c queue/src/queue.c)
+add_library(data_structures_in_c common.h common.c)
 
 enable_testing()
 

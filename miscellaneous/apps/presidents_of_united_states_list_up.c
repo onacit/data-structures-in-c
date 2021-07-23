@@ -4,13 +4,13 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include "miscellaneous.h"
 #include "presidents_of_united_states.h"
-#include "presidents_of_united_states_misc.h"
 
 bool first(long presidency, char *president) {
     assert(president != NULL);
     char s[5];
-    presidency_to_ordinal_suffixed(s, presidency);
+    long_to_ordinal_suffixed(s, 4, presidency);
     printf("The %s president of the United States: %s\n", s, president);
     return true;
 }

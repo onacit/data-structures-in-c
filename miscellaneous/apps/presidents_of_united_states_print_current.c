@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "miscellaneous.h"
 #include "presidents_of_united_states.h"
-#include "presidents_of_united_states_misc.h"
 
 bool current(struct president_of_united_state_iterator *iterator, long presidency, char *president) {
     assert(iterator != NULL);
@@ -41,7 +41,7 @@ int main() {
     iterator->accept = current;
     if (presidents_of_united_states_iterate_while(iterator) == EXIT_SUCCESS) {
         char s[5];
-        const int l = presidency_to_ordinal_suffixed(s, president->presidency);
+        int l = long_to_ordinal_suffixed(s, 4, president->presidency);
         assert (l >= 3 && l < 5); // '_st' ~ '__th'
         printf("%s is the %s and current president of the United States.\n", president->president, s);
     }
