@@ -4,7 +4,7 @@ project(data_structures_in_c C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(data_structures_in_c common.h common.c)
+add_library(data_structures_in_c common.h common.c queue/src/queue.c)
 
 enable_testing()
 
@@ -17,3 +17,4 @@ add_subdirectory(miscellaneous)
 #add_subdirectory(presidents_of_united_states)
 add_subdirectory(list)
 add_subdirectory(stack)
+add_subdirectory(queue)

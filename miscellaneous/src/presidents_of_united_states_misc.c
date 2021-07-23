@@ -1,9 +1,6 @@
-//
-// Created by onacit on 2021-06-26.
-//
-
 #include <assert.h>
 #include <string.h>
+#include "miscellaneous.h"
 #include "presidents_of_united_states_misc.h"
 
 static size_t n = 5;

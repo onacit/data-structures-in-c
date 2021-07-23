@@ -15,7 +15,6 @@ add_library(
         include/presidents_of_united_states_misc.h
         src/miscellaneous.c
         src/presidents_of_united_states.c
-        src/presidents_of_united_states.c
         src/presidents_of_united_states_misc.c
 )
 
@@ -59,7 +58,3 @@ add_executable(
         src/presidents_of_united_states_misc.c
         apps/presidents_of_united_states_print_first.c
 )
-
-
-#set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include
-#        CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)

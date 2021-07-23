@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include "miscellaneous.h"
 
+static const char * const ORDINAL_SUFFIX_ST = "st";
+static const char * const ORDINAL_SUFFIX_ND = "nd";
+static const char * const ORDINAL_SUFFIX_RD = "rd";
+static const char * const ORDINAL_SUFFIX_TH = "th";
+
 const char * ordinal_suffix_for_long(long ordinal) {
     switch (ordinal % 10) {
         case 1:
