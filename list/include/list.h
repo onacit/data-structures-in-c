@@ -11,11 +11,15 @@ struct list_iterator {
 
     bool (*next)(struct list_iterator *i);
 
-    bool (*previous)(struct list_iterator *i);
+    bool (*prev)(struct list_iterator *i);
 
     void * (*get)(struct list_iterator *i);
 
     void * (*set)(struct list_iterator *i, void *d);
+
+    void (*insert)(struct list_iterator *i, void *d);
+
+    void * (*delete)(struct list_iterator *i);
 };
 
 
