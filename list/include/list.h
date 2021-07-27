@@ -9,15 +9,9 @@
 
 struct list_iterator {
 
-    void *env_;
-
     bool (*next)(struct list_iterator *i);
 
-    bool (*prev)(struct list_iterator *i);
-
-    void (*insert)(struct list_iterator *i, void *d);
-
-    void * (*delete)(struct list_iterator *i);
+    bool (*previous)(struct list_iterator *i);
 
     void * (*get)(struct list_iterator *i);
 
@@ -27,7 +21,7 @@ struct list_iterator {
 
 struct list {
 
-    void *env_;
+    void *environment;
 
     size_t (*size)(struct list *l);
     bool (*empty)(struct list *l);
@@ -51,6 +45,7 @@ struct list {
     struct list_iterator * (*iterator)(struct list *l, size_t i);
     struct list_iterator * (*iterator_first)(struct list *l);
     struct list_iterator * (*iterator_last)(struct list *l);
+    void (*iterator_free)(struct list_iterator *i);
 };
 
 
@@ -85,6 +80,15 @@ void * list_set(struct list *l, size_t i, void *d);
 void * list_set_first(struct list *l, void *d);
 
 void * list_set_last(struct list *l, void *d);
+
+
+struct list_iterator * list_iterator(struct list *l, size_t i);
+
+struct list_iterator * list_iterator_first(struct list *l);
+
+struct list_iterator * list_iterator_last(struct list *l);
+
+void list_iterator_free(struct list *l, struct list_iterator *i);
 
 
 #endif //DATA_STRUCTURES_IN_C_LIST_H

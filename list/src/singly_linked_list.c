@@ -17,7 +17,7 @@ struct singly_linked_list_env_ {
 
 struct singly_linked_node * node(struct list *l, size_t i) {
     assert(l != NULL);
-    struct singly_linked_list_env_ *e = l->env_;
+    struct singly_linked_list_env_ *e = l->environment;
     struct singly_linked_node *n = e->head;
     for (size_t j = 0; n != NULL && j < i; j++) {
         n = n->next;
@@ -27,7 +27,7 @@ struct singly_linked_node * node(struct list *l, size_t i) {
 
 struct singly_linked_node* tail(struct list *l) {
     assert(l != NULL);
-    struct singly_linked_list_env_ *e = l->env_;
+    struct singly_linked_list_env_ *e = l->environment;
     struct singly_linked_node *n = e->head;
     if (n == NULL) {
         return NULL;
@@ -40,7 +40,7 @@ struct singly_linked_node* tail(struct list *l) {
 size_t singly_linked_list_size(struct list *l) {
     assert(l != NULL);
     size_t s = 0;
-    struct singly_linked_list_env_ *e = l->env_;
+    struct singly_linked_list_env_ *e = l->environment;
     struct singly_linked_node *n = e->head;
     for (; n != NULL; n = n->next) {
         s++;
@@ -51,13 +51,13 @@ size_t singly_linked_list_size(struct list *l) {
 bool singly_linked_list_empty(struct list *l) {
     assert(l != NULL);
     //return singly_linked_list_size(l) == 0;
-    struct singly_linked_list_env_ *e = l->env_;
+    struct singly_linked_list_env_ *e = l->environment;
     return e->head == NULL;
 }
 
 void singly_linked_list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
-    struct singly_linked_list_env_ *e = l->env_;
+    struct singly_linked_list_env_ *e = l->environment;
     if (i == 0) {
         struct singly_linked_node *n = singly_linked_node(d);
         assert(n != NULL);
@@ -83,7 +83,7 @@ void * singly_linked_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
     assert(!singly_linked_list_empty(l));
     if (i == 0) {
-        struct singly_linked_list_env_ *e = l->env_;
+        struct singly_linked_list_env_ *e = l->environment;
         struct singly_linked_node *h = e->head;
         assert(h != NULL);
         e->head = h->next;
@@ -116,7 +116,7 @@ struct list * singly_linked_list() {
         free(e);
         return NULL;
     }
-    l->env_ = e;
+    l->environment = e;
     l->size = singly_linked_list_size;
     l->empty = singly_linked_list_empty;
     l->insert = singly_linked_list_insert;

@@ -11,6 +11,6 @@
 
 struct stack * list_stack(struct list *l);
 
-void list_stack_free(struct stack * s);
+struct list * list_stack_free(struct stack * s);
 
 #endif //DATA_STRUCTURES_IN_C_LIST_STACK_H

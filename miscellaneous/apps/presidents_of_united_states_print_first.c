@@ -10,7 +10,7 @@
 bool first(long presidency, char * const president) {
     assert(president != NULL);
     char s[4];
-    long_to_ordinal_suffixed(s, 4, presidency);
+    long_to_ordinal_suffixed(s, 5, presidency);
     printf("%s was the %s president of the United States.\n", president, s);
     return false;
 }

@@ -44,8 +44,13 @@ struct stack * list_stack(struct list *l) {
     return s;
 }
 
-void list_stack_free(struct stack *s) {
+struct list * list_stack_free(struct stack *s) {
     assert(s != NULL);
-    s->env = NULL;
+    struct list *l = s->env;
+    s->size = NULL;
+    s->empty = NULL;
+    s->push = NULL;
+    s->pop = NULL;
     free(s);
+    return l;
 }

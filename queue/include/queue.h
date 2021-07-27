@@ -2,6 +2,7 @@
 #define DATA_STRUCTURES_IN_C_QUEUE_H
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 struct queue {
 

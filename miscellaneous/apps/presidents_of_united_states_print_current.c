@@ -32,7 +32,7 @@ int main() {
     }
     struct president_of_united_state *president = malloc(sizeof(struct president_of_united_state));
     if (president == NULL) {
-        fprintf(stderr, "failed to allocate an env_");
+        fprintf(stderr, "failed to allocate an environment");
         free(iterator);
         return EXIT_FAILURE;
     }
@@ -41,7 +41,7 @@ int main() {
     iterator->accept = current;
     if (presidents_of_united_states_iterate_while(iterator) == EXIT_SUCCESS) {
         char s[5];
-        int l = long_to_ordinal_suffixed(s, 4, president->presidency);
+        int l = long_to_ordinal_suffixed(s, 5, president->presidency);
         assert (l >= 3 && l < 5); // '_st' ~ '__th'
         printf("%s is the %s and current president of the United States.\n", president->president, s);
     }

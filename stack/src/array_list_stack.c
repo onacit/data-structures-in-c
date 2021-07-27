@@ -13,10 +13,14 @@ struct stack * array_list_stack() {
     if (l == NULL) {
         return NULL;
     }
-    return list_stack(l);
+    struct stack *s = list_stack(l);
+    if (s == NULL) {
+        free(l);
+    }
+    return s;
 }
 
-void list_stack_free(struct stack *s) {
+void array_list_stack_free(struct stack *s) {
     assert(s != NULL);
     free(s->env);
     free(s);

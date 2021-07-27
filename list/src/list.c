@@ -111,3 +111,65 @@ void * list_set_last(struct list *l, void *d) {
     }
     return list_set(l, list_size(l) - 1, d);
 }
+
+// -----------------------------------------------------------------------------
+
+struct list_iterator * list_iterator(struct list *l, size_t i) {
+    assert(l != NULL);
+    return l->iterator(l, i);
+}
+
+struct list_iterator * list_iterator_first(struct list *l) {
+    assert(l != NULL);
+    if (l->iterator_first != NULL) {
+        l->iterator_first(l);
+    }
+    size_t i = 0;
+    return l->iterator(l, i);
+}
+
+struct list_iterator * list_iterator_last(struct list *l) {
+    assert(l != NULL);
+    if (l->iterator_last != NULL) {
+        l->iterator_last(l);
+    }
+    size_t i = list_size(l);
+    return l->iterator(l, i);
+}
+
+void list_iterator_free(struct list *l, struct list_iterator *i) {
+    assert(l != NULL);
+    l->iterator_free(i);
+}
+
+
+// -----------------------------------------------------------------------------
+struct list_iterator_ {
+
+    struct list_iterator;
+
+    struct list *list;
+    size_t next;
+    size_t curr;
+};
+
+bool list_iterator_next(struct list_iterator_ *i) {
+    assert(i != NULL);
+    size_t size = list_size(i->list);
+    if (i->next < size) {
+        return false;
+    }
+    i->curr = i->next++;
+    return true;
+}
+
+bool list_iterator_prev(struct list_iterator *i) {
+    assert(i != NULL);
+    struct list_iterator_environment *e = i->environment;
+    if (e->curr == 0) {
+        return false;
+    }
+    e->next = --e->curr;
+    return true;
+}
+
