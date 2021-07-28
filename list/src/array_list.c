@@ -8,13 +8,6 @@
 #include "array_list.h"
 
 
-struct array_list_iterator_environment {
-    struct list *list;
-    size_t next;
-    size_t curr;
-};
-
-
 struct array_list_environment {
     void **array;
     size_t capacity;
@@ -129,43 +122,6 @@ void * array_list_set_last_(struct list *l, void *d) {
 }
 
 // -----------------------------------------------------------------------------
-bool array_list_iterator_next(struct list_iterator *i) {
-    assert(i != NULL);
-    struct array_list_iterator_environment *e = i->environment;
-    size_t size = array_list_size(e->list);
-    if (e->next < size) {
-        return false;
-    }
-    e->curr = e->next++;
-    return true;
-}
-
-bool array_list_iterator_previous(struct list_iterator *i) {
-    assert(i != NULL);
-    struct array_list_iterator_environment *e = i->environment;
-    size_t size = array_list_size(e->list);
-    if (e->curr == 0) {
-        return false;
-    }
-    e->next = --e->curr;
-    return true;
-}
-
-struct list_iterator * array_list_iterator(struct list *l, size_t i) {
-    assert(l != NULL);
-    assert(i <= array_list_size(l));
-    struct array_list_environment *le = l->environment;
-    struct array_list_iterator_environment *ie
-            = malloc(sizeof(struct array_list_iterator_environment));
-    if (ie == NULL) {
-        return NULL;
-    }
-    ie->list = l;
-    ie->next = i;
-    ie->curr = i - 1;
-}
-
-// -----------------------------------------------------------------------------
 
 struct list * array_list() {
     struct array_list_environment *e
@@ -207,5 +163,59 @@ void array_list_free(struct list *l) {
     free(e->array);
     free(l);
 }
+
+
+
+struct array_list_iterator_environment {
+    struct list *list;
+    size_t next;
+    size_t curr;
+};
+
+struct array_list_iterator {
+    struct list_iterator;
+    struct list *list;
+    size_t next;
+    size_t curr;
+};
+
+// -----------------------------------------------------------------------------
+bool array_list_iterator_next(struct list_iterator *i_) {
+    assert(i_ != NULL);
+    struct array_list_iterator *i = i_;
+//    size_t size = array_list_size(e->list);
+//    if (e->next < size) {
+//        return false;
+//    }
+//    e->curr = e->next++;
+    return true;
+}
+
+bool array_list_iterator_previous(struct list_iterator *i) {
+    assert(i != NULL);
+    struct array_list_iterator_environment *e = i->environment;
+    size_t size = array_list_size(e->list);
+    if (e->curr == 0) {
+        return false;
+    }
+    e->next = --e->curr;
+    return true;
+}
+
+struct list_iterator * array_list_iterator(struct list *l, size_t i) {
+    assert(l != NULL);
+    assert(i <= array_list_size(l));
+    struct array_list_environment *le = l->environment;
+    struct array_list_iterator_environment *ie
+            = malloc(sizeof(struct array_list_iterator_environment));
+    if (ie == NULL) {
+        return NULL;
+    }
+    ie->list = l;
+    ie->next = i;
+    ie->curr = i - 1;
+}
+
+
 
 
