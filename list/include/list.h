@@ -25,7 +25,7 @@ struct list_iterator {
 
 struct list {
 
-    void *environment;
+    void *env;
 
     size_t (*size)(struct list *l);
     bool (*empty)(struct list *l);

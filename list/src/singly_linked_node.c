@@ -1,7 +1,3 @@
-//
-// Created by onacit on 2021-06-06.
-//
-
 #include <assert.h>
 #include <stdlib.h>
 #include "singly_linked_node.h"

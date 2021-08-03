@@ -6,8 +6,6 @@ set(CMAKE_C_STANDARD 11)
 
 #add_library(data_structures_in_c)
 
-enable_testing()
-
 #add_executable(singly_linked_node_test singly_linked_node_test.c)
 
 
@@ -18,3 +16,6 @@ add_subdirectory(miscellaneous)
 add_subdirectory(list)
 add_subdirectory(stack)
 add_subdirectory(queue)
+
+enable_testing()
+include(CTest)

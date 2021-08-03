@@ -143,33 +143,33 @@ void list_iterator_free(struct list *l, struct list_iterator *i) {
 }
 
 
-// -----------------------------------------------------------------------------
-struct list_iterator_ {
-
-    struct list_iterator;
-
-    struct list *list;
-    size_t next;
-    size_t curr;
-};
-
-bool list_iterator_next(struct list_iterator_ *i) {
-    assert(i != NULL);
-    size_t size = list_size(i->list);
-    if (i->next < size) {
-        return false;
-    }
-    i->curr = i->next++;
-    return true;
-}
-
-bool list_iterator_prev(struct list_iterator *i) {
-    assert(i != NULL);
-    struct list_iterator_environment *e = i->environment;
-    if (e->curr == 0) {
-        return false;
-    }
-    e->next = --e->curr;
-    return true;
-}
-
+//// -----------------------------------------------------------------------------
+//struct list_iterator_ {
+//
+//    struct list_iterator;
+//
+//    struct list *list;
+//    size_t next;
+//    size_t curr;
+//};
+//
+//bool list_iterator_next(struct list_iterator_ *i) {
+//    assert(i != NULL);
+//    size_t size = list_size(i->list);
+//    if (i->next < size) {
+//        return false;
+//    }
+//    i->curr = i->next++;
+//    return true;
+//}
+//
+//bool list_iterator_prev(struct list_iterator_ *i) {
+//    assert(i != NULL);
+//    size_t size = list_size(i->list);
+//    if (i->curr == 0) {
+//        return false;
+//    }
+//    i->next = --i->curr;
+//    return true;
+//}
+//
