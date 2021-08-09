@@ -7,32 +7,34 @@
 #include <stdlib.h>
 #include "list.h"
 
+// ------------------------------------------------------------------------ size
 
 size_t list_size(struct list *l) {
     assert(l != NULL);
-    return l->size(l);
+    return l->size(l); // <1>
 }
 
 bool list_empty(struct list *l) {
     assert(l != NULL);
-    if (l->empty != NULL) {
-        return l->empty(l);
+    if (l->empty != NULL) {   // <1>
+        return l->empty(l);   // <2>
     }
-    return l->size(l) == 0;
+    return list_size(l) == 0; // <3>
 }
 
+// ---------------------------------------------------------------------- insert
 
 void list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
-    return l->insert(l, i, d);
+    return l->insert(l, i, d); // <1>
 }
 
 void list_insert_first(struct list *l, void *d) {
     assert(l != NULL);
-    if (l->insert_first != NULL) {
-        return l->insert_first(l, d);
+    if (l->insert_first != NULL) {    // <1>
+        return l->insert_first(l, d); // <2>
     }
-    return list_insert(l, 0, d);
+    return list_insert(l, 0, d);      // <3>
 }
 
 void list_insert_last(struct list *l, void *d) {
@@ -40,9 +42,10 @@ void list_insert_last(struct list *l, void *d) {
     if (l->insert_last != NULL) {
         return l->insert_last(l, d);
     }
-    return l->insert(l, list_size(l), d);
+    return list_insert(l, list_size(l), d);
 }
 
+// ---------------------------------------------------------------------- delete
 
 void * list_delete(struct list *l, size_t i) {
     assert(l != NULL);
@@ -66,6 +69,7 @@ void * list_delete_last(struct list *l) {
     return list_delete(l, list_size(l) - 1);
 }
 
+// ------------------------------------------------------------------------- get
 
 void * list_get(struct list *l, size_t i) {
     assert(l != NULL);
@@ -89,6 +93,7 @@ void * list_get_last(struct list *l) {
     return list_get(l, list_size(l) - 1);
 }
 
+// ------------------------------------------------------------------------- set
 
 void * list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
@@ -112,7 +117,7 @@ void * list_set_last(struct list *l, void *d) {
     return list_set(l, list_size(l) - 1, d);
 }
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------- iterator
 
 struct list_iterator * list_iterator(struct list *l, size_t i) {
     assert(l != NULL);
@@ -143,7 +148,7 @@ void list_iterator_free(struct list *l, struct list_iterator *i) {
 }
 
 
-//// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //struct list_iterator_ {
 //
 //    struct list_iterator;

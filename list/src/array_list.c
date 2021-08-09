@@ -1,7 +1,3 @@
-//
-// Created by onacit on 2021-06-05.
-//
-
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -15,7 +11,7 @@ struct array_list_env {
     size_t size;
 };
 
-// -----------------------------------------------------------------------------
+// ------------------------------------------------------------------------ size
 
 size_t array_list_size(struct list *l) {
     assert(l != NULL);
@@ -28,7 +24,7 @@ bool array_list_empty(struct list *l) {
     return array_list_size(l) == 0;
 }
 
-// -----------------------------------------------------------------------------
+// ---------------------------------------------------------------------- insert
 
 void array_list_insert(struct list *const l, size_t i, void *const d) {
     assert(l != NULL);
@@ -56,6 +52,7 @@ void array_list_insert_last(struct list *l, void *d) {
     array_list_insert(l, array_list_size(l), d);
 }
 
+// ---------------------------------------------------------------------- delete
 
 void * array_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
@@ -63,9 +60,6 @@ void * array_list_delete(struct list *l, size_t i) {
     struct array_list_env *e = l->env;
     assert(e != NULL);
     void *d = e->array[i];
-//    for (size_t j = i; j < e->size - 1; j++) {
-//        e->array[j] = e->array[j + 1];
-//    }
     memmove(e->array + i, e->array + i + 1, sizeof(void *) * (e->size - i - 1));
     e->array[e->size - 1] = NULL;
     e->size--;
@@ -80,7 +74,7 @@ void * array_list_delete_last(struct list *l) {
     array_list_delete(l, array_list_size(l) - 1);
 }
 
-// -----------------------------------------------------------------------------
+// ------------------------------------------------------------------------- get
 
 void * array_list_get(struct list *l, size_t i) {
     assert(l != NULL);
@@ -97,7 +91,7 @@ void * array_list_get_last(struct list *l) {
     return array_list_get(l, array_list_size(l) - 1);
 }
 
-// -----------------------------------------------------------------------------
+// ------------------------------------------------------------------------- set
 
 void * array_list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
@@ -115,7 +109,7 @@ void * array_list_set_last(struct list *l, void *d) {
     return array_list_set(l, array_list_size(l) - 1, d);
 }
 
-// -----------------------------------------------------------------------------
+// ------------------------------------------------------ constructor/destructor
 
 struct list * array_list() {
     struct array_list_env *e = malloc(sizeof(struct array_list_env));
@@ -156,6 +150,8 @@ void array_list_free(struct list *l) {
     free(e);
     free(l);
 }
+
+// -------------------------------------------------------------------- iterator
 
 
 

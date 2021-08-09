@@ -1,7 +1,3 @@
-//
-// Created by onacit on 7/9/2021.
-//
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

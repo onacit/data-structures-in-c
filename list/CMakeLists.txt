@@ -13,7 +13,8 @@ add_library(
         src/list.c
         src/singly_linked_list.c
         src/singly_linked_node.c
-)
+        include/doubly_linked_node.h
+        src/doubly_linked_node.c src/doubly_linked_list.c)
 #
 #add_executable(
 #        presidents_of_united_states_print1
@@ -31,7 +32,7 @@ add_executable(
         src/array_list.c
         src/list.c
         apps/array_list_insert_first_delete_first.c
-)
+        include/doubly_linked_list.h)
 
 add_executable(
         array_list_insert_first_delete_last

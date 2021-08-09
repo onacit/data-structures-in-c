@@ -10,7 +10,7 @@
 #define NDEBUG
 
 int main() {
-    struct list *l = array_list();
+    struct list *const l = array_list();
     if (l == NULL) {
         return EXIT_FAILURE;
     }
