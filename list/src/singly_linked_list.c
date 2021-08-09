@@ -1,6 +1,3 @@
-//
-// Created by onacit on 2021-06-05.
-//
 
 #include <assert.h>
 #include <stdbool.h>
@@ -25,17 +22,7 @@ struct singly_linked_node * node_from_head(struct list *l, size_t i) {
     return n;
 }
 
-struct singly_linked_node* tail(struct list *l) {
-    assert(l != NULL);
-    struct singly_linked_list_env *e = l->env;
-    struct singly_linked_node *n = e->head;
-    if (n == NULL) {
-        return NULL;
-    }
-    for (; n->next != NULL; n = n->next) {
-    }
-    return n;
-}
+// ------------------------------------------------------------------------ size
 
 size_t singly_linked_list_size(struct list *l) {
     assert(l != NULL);
@@ -54,6 +41,8 @@ bool singly_linked_list_empty(struct list *l) {
     return e->head == NULL;
 }
 
+// ---------------------------------------------------------------------- insert
+
 void singly_linked_list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     struct singly_linked_list_env *e = l->env;
@@ -68,15 +57,17 @@ void singly_linked_list_insert(struct list *l, size_t i, void *d) {
     singly_linked_node_insert_next(p, d);
 }
 
-void singly_linked_list_insert_first_(struct list *l, void *d) {
+void singly_linked_list_insert_first(struct list *l, void *d) {
     size_t i = 0;
     singly_linked_list_insert(l, i, d);
 }
 
-void singly_linked_list_insert_last_(struct list *l, void *d) {
+void singly_linked_list_insert_last(struct list *l, void *d) {
     size_t i = singly_linked_list_size(l);
     singly_linked_list_insert(l, i, d);
 }
+
+// ---------------------------------------------------------------------- delete
 
 void * singly_linked_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
@@ -93,20 +84,19 @@ void * singly_linked_list_delete(struct list *l, size_t i) {
     return singly_linked_node_delete_next(p);
 }
 
-void * singly_linked_list_delete_first_(struct list *l) {
-    size_t i = 0;
-    return singly_linked_list_delete(l, i);
+void * singly_linked_list_delete_first(struct list *l) {
+    return singly_linked_list_delete(l, 0);
 }
 
-void * singly_linked_list_delete_last_(struct list *l) {
-    size_t i = singly_linked_list_size(l) - 1;
-    return singly_linked_list_delete(l, i);
+void * singly_linked_list_delete_last(struct list *l) {
+    return singly_linked_list_delete(l, singly_linked_list_size(l) - 1);
 }
 
-// ---------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------ constructor/destructor
 
 struct list * singly_linked_list() {
-    struct singly_linked_list_env *e = malloc(sizeof(struct singly_linked_list_env));
+    struct singly_linked_list_env *e
+            = malloc(sizeof(struct singly_linked_list_env));
     if (e == NULL) {
         return NULL;
     }
@@ -119,11 +109,11 @@ struct list * singly_linked_list() {
     l->size = singly_linked_list_size;
     l->empty = singly_linked_list_empty;
     l->insert = singly_linked_list_insert;
-    l->insert_first = singly_linked_list_insert_first_;
-    l->insert_last = singly_linked_list_insert_last_;
+    l->insert_first = singly_linked_list_insert_first;
+    l->insert_last = singly_linked_list_insert_last;
     l->delete = singly_linked_list_delete;
-    l->delete_first = singly_linked_list_delete_first_;
-    l->delete_last = singly_linked_list_delete_last_;
+    l->delete_first = singly_linked_list_delete_first;
+    l->delete_last = singly_linked_list_delete_last;
     return l;
 }
 
