@@ -5,6 +5,7 @@
 #define DATA_STRUCTURES_IN_C_LIST_H
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 
 struct list_iterator {
