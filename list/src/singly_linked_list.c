@@ -37,14 +37,7 @@ struct singly_linked_node * tail(struct singly_linked_list_env *const e) {
 size_t singly_linked_list_size(struct list *const l) {
     assert(l != NULL);
     struct singly_linked_list_env *const e = l->env;
-    if (true) {
-        return e->size;
-    }
-    size_t s = 0;
-    for (struct singly_linked_node *n = e->head; n != NULL; n = n->next) {
-        s++;
-    }
-    return s;
+    return e->size;
 }
 
 bool singly_linked_list_empty(struct list *const l) {
