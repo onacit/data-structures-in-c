@@ -22,12 +22,11 @@ struct singly_linked_node * node(struct singly_linked_list_env *const e,
     return n;
 }
 
-struct singly_linked_node * tail(struct singly_linked_list_env *const e,
-                                 const size_t i) {
+struct singly_linked_node * tail(struct singly_linked_list_env *const e) {
     assert(e != NULL);
-    struct singly_linked_node *n = e->head;          // <1>
-    for (size_t j = 0; n != NULL && j < i; j++) {    // <2>
-        n = n->next;                                 // <3>
+    struct singly_linked_node *n = e->head; // <1>
+    while (n != NULL) {                     // <2>
+        n = n->next;                        // <3>
     }
     return n;
 }
