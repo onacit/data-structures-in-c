@@ -9,6 +9,7 @@
 
 struct singly_linked_list_env {
     struct singly_linked_node *head;
+    struct singly_linked_node *tail;
 };
 
 
