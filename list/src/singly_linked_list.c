@@ -25,7 +25,7 @@ struct singly_linked_node * node(struct singly_linked_list_env *const e,
 struct singly_linked_node * tail(struct singly_linked_list_env *const e) {
     assert(e != NULL);
     struct singly_linked_node *n = e->head; // <1>
-    while (n != NULL) {                     // <2>
+    while (n != NULL && n->next != NULL) {  // <2>
         n = n->next;                        // <3>
     }
     return n;
@@ -74,7 +74,14 @@ int singly_linked_list_insert_first(struct list *const l, void *const d) {
 }
 
 int singly_linked_list_insert_last(struct list *const l, void *const d) {
-    return singly_linked_list_insert(l, singly_linked_list_size(l), d);
+    assert(l != NULL);
+    struct singly_linked_list_env *const e = l->env;
+    struct singly_linked_node *const t = tail(e);
+    if (t == NULL) {
+        return singly_linked_list_insert_first(l, d);
+    }
+    singly_linked_node_insert_next(t, d);
+    return 0;
 }
 
 // ---------------------------------------------------------------------- delete
