@@ -9,6 +9,7 @@
 
 struct singly_linked_list_env {
     struct singly_linked_node *head;
+    size_t size;
 };
 
 
@@ -36,6 +37,9 @@ struct singly_linked_node * tail(struct singly_linked_list_env *const e) {
 size_t singly_linked_list_size(struct list *const l) {
     assert(l != NULL);
     struct singly_linked_list_env *const e = l->env;
+    if (true) {
+        return e->size;
+    }
     size_t s = 0;
     for (struct singly_linked_node *n = e->head; n != NULL; n = n->next) {
         s++;
@@ -62,10 +66,12 @@ int singly_linked_list_insert(struct list *const l, const size_t i,
         }
         n->next = e->head;
         e->head = n;
+        e->size++;
         return 0;
     }
     struct singly_linked_node *const p = node(e, i - 1);
     singly_linked_node_insert_next(p, d);
+    e->size++;
     return 0;
 }
 
@@ -86,6 +92,7 @@ void * singly_linked_list_delete(struct list *const l, const size_t i) {
     if (i == 0) {
         struct singly_linked_node *const h = e->head;
         e->head = h->next;
+        e->size--;
         h->next = NULL;
         return singly_linked_node_free(h);
     }
@@ -110,6 +117,7 @@ struct list * singly_linked_list() {
         return NULL;
     }
     e->head = NULL;
+    e->size = 0;
     struct list *l = malloc(sizeof(struct list));
     if (l == NULL) {
         free(e);
