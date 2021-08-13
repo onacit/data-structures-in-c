@@ -1,10 +1,9 @@
-//
-// Created by onacit on 2021-06-05.
-//
+
 #ifndef DATA_STRUCTURES_IN_C_LIST_H
 #define DATA_STRUCTURES_IN_C_LIST_H
 
 #include <stdbool.h>
+#include <stddef.h> // size_t
 
 
 struct list_iterator {
