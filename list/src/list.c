@@ -24,12 +24,12 @@ bool list_empty(struct list *l) {
 
 // ---------------------------------------------------------------------- insert
 
-void list_insert(struct list *l, size_t i, void *d) {
+int list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     return l->insert(l, i, d); // <1>
 }
 
-void list_insert_first(struct list *l, void *d) {
+int list_insert_first(struct list *l, void *d) {
     assert(l != NULL);
     if (l->insert_first != NULL) {    // <1>
         return l->insert_first(l, d); // <2>
@@ -37,7 +37,7 @@ void list_insert_first(struct list *l, void *d) {
     return list_insert(l, 0, d);      // <3>
 }
 
-void list_insert_last(struct list *l, void *d) {
+int list_insert_last(struct list *l, void *d) {
     assert(l != NULL);
     if (l->insert_last != NULL) {
         return l->insert_last(l, d);

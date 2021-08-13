@@ -13,10 +13,9 @@ struct array_list_env {
 
 // ------------------------------------------------------------------------ size
 
-size_t array_list_size(struct list *l) {
+size_t array_list_size(struct list *const l) {
     assert(l != NULL);
     struct array_list_env *e = l->env;
-    assert(e != NULL);
     return e->size;
 }
 
@@ -26,43 +25,42 @@ bool array_list_empty(struct list *l) {
 
 // ---------------------------------------------------------------------- insert
 
-void array_list_insert(struct list *const l, size_t i, void *const d) {
+int array_list_insert(struct list *const l, const size_t i, void *const d) {
     assert(l != NULL);
     assert(i <= array_list_size(l));
     struct array_list_env *e = l->env;
-    assert(e != NULL);
     if (e->size == e->capacity) {
         e->capacity = e->capacity == 0 ? 1 : e->capacity << 1;
-        e->array = realloc(e->array, sizeof(void *) * (e->capacity));
-        assert(e->array != NULL);
+        void **a = realloc(e->array, sizeof(void *) * (e->capacity));
+        if (a == NULL) {
+            return -1;
+        }
+        e->array = a;
     }
-//    for (size_t j = e->size; j > i; j--) {
-//        e->array[j] = e->array[j - 1];
-//    }
-    memmove(e->array + i + 1, e->array + i, sizeof(void *) * (e->size - i));
+    memmove(e->array + (i + 1), e->array + i, sizeof(void *) * (e->size - i));
     e->array[i] = d;
     e->size = e->size + 1;
+    return 0;
 }
 
-void array_list_insert_first(struct list *l, void *d) {
-    array_list_insert(l, 0, d);
+int array_list_insert_first(struct list *const l, void *const d) {
+    return array_list_insert(l, 0, d);
 }
 
-void array_list_insert_last(struct list *l, void *d) {
-    array_list_insert(l, array_list_size(l), d);
+int array_list_insert_last(struct list *const l, void *const d) {
+    return array_list_insert(l, array_list_size(l), d);
 }
 
 // ---------------------------------------------------------------------- delete
 
-void * array_list_delete(struct list *l, size_t i) {
+void * array_list_delete(struct list *const l, const size_t i) {
     assert(l != NULL);
     assert(i < array_list_size(l));
     struct array_list_env *e = l->env;
-    assert(e != NULL);
     void *d = e->array[i];
-    memmove(e->array + i, e->array + i + 1, sizeof(void *) * (e->size - i - 1));
+    memmove(e->array + i, e->array + (i + 1), sizeof(void *) * (e->size - (i - 1)));
     e->array[e->size - 1] = NULL;
-    e->size--;
+    e->size = e->size - 1;
     return d;
 }
 
@@ -76,50 +74,50 @@ void * array_list_delete_last(struct list *l) {
 
 // ------------------------------------------------------------------------- get
 
-void * array_list_get(struct list *l, size_t i) {
+void * array_list_get(struct list *const l, const size_t i) {
     assert(l != NULL);
     assert(i < array_list_size(l));
-    struct array_list_env *e = l->env;
+    struct array_list_env *const e = l->env;
     return e->array[i];
 }
 
-void * array_list_get_first(struct list *l) {
+void * array_list_get_first(struct list *const l) {
     return array_list_get(l, 0);
 }
 
-void * array_list_get_last(struct list *l) {
+void * array_list_get_last(struct list *const l) {
     return array_list_get(l, array_list_size(l) - 1);
 }
 
 // ------------------------------------------------------------------------- set
 
-void * array_list_set(struct list *l, size_t i, void *d) {
+void * array_list_set(struct list *const l, const size_t i, void *const d) {
     assert(l != NULL);
     struct array_list_env *e = l->env;
-    void *p = e->array[i];
+    void *const p = e->array[i];
     e->array[i] = d;
     return p;
 }
 
-void * array_list_set_first(struct list *l, void *d) {
+void * array_list_set_first(struct list *const l, void *const d) {
     return array_list_set(l, 0, d);
 }
 
-void * array_list_set_last(struct list *l, void *d) {
+void * array_list_set_last(struct list *const l, void *const d) {
     return array_list_set(l, array_list_size(l) - 1, d);
 }
 
-// ------------------------------------------------------ constructor/destructor
+// -------------------------------------------------------- construct / destruct
 
 struct list * array_list() {
-    struct array_list_env *e = malloc(sizeof(struct array_list_env));
+    struct array_list_env *const e = malloc(sizeof(struct array_list_env));
     if (e == NULL) {
         return NULL;
     }
     e->array = NULL;
     e->capacity = 0;
     e->size = 0;
-    struct list *l = malloc(sizeof(struct list));
+    struct list *const l = malloc(sizeof(struct list));
     if (l == NULL) {
         free(e);
         return NULL;
@@ -142,10 +140,10 @@ struct list * array_list() {
     return l;
 }
 
-void array_list_free(struct list *l) {
+void array_list_free(struct list *const l) {
     assert(l != NULL);
     assert(array_list_empty(l));
-    struct array_list_env *e = l->env;
+    struct array_list_env *const e = l->env;
     free(e->array);
     free(e);
     free(l);

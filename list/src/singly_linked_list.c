@@ -12,26 +12,25 @@ struct singly_linked_list_env {
 };
 
 
-struct singly_linked_node * node_from_head(struct list *l, size_t i) {
+struct singly_linked_node * node(struct list *const l, const size_t i) {
     assert(l != NULL);
-    struct singly_linked_list_env *e = l->env;    // <1>
+    struct singly_linked_list_env *const e = l->env; // <1>
     assert(e != NULL);
-    struct singly_linked_node *n = e->head;       // <2>
-    for (size_t j = 0; n != NULL && j < i; j++) { // <3>
-        n = n->next;                              // <4>
+    struct singly_linked_node *n = e->head;          // <2>
+    for (size_t j = 0; n != NULL && j < i; j++) {    // <3>
+        n = n->next;                                 // <4>
     }
     return n;
 }
 
 // ------------------------------------------------------------------------ size
 
-size_t singly_linked_list_size(struct list *l) {
+size_t singly_linked_list_size(struct list *const l) {
     assert(l != NULL);
-    size_t s = 0;
     struct singly_linked_list_env *e = l->env;
     assert(e != NULL);
-    struct singly_linked_node *n = e->head;
-    for (; n != NULL; n = n->next) {
+    size_t s = 0;
+    for (struct singly_linked_node *n = e->head; n != NULL; n = n->next) {
         s++;
     }
     return s;
@@ -57,7 +56,7 @@ void singly_linked_list_insert(struct list *l, size_t i, void *d) {
         e->head = n;
         return;
     }
-    struct singly_linked_node *p = node_from_head(l, i - 1);
+    struct singly_linked_node *p = node(l, i - 1);
     singly_linked_node_insert_next(p, d);
 }
 
@@ -82,7 +81,7 @@ void * singly_linked_list_delete(struct list *l, size_t i) {
         h->next = NULL;
         return singly_linked_node_free(h);
     }
-    struct singly_linked_node *p = node_from_head(l, i - 1);
+    struct singly_linked_node *p = node(l, i - 1);
     return singly_linked_node_delete_next(p);
 }
 

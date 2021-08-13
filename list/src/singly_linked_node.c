@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "singly_linked_node.h"
 
-// ------------------------------------------------------ constructor/destructor
-
+// -------------------------------------------------------- construct / destruct
 struct singly_linked_node * singly_linked_node(void *d) {
     struct singly_linked_node *n = malloc(sizeof(struct singly_linked_node));
     if (n == NULL) {
@@ -23,11 +22,10 @@ void * singly_linked_node_free(struct singly_linked_node *n) {
     return d;
 }
 
-// ---------------------------------------------------------------------- insert
-
+// ------------------------------------------------------------- insert / delete
 struct singly_linked_node * singly_linked_node_insert_next(
         struct singly_linked_node *p, void *d) {
-    assert (p != NULL);
+    assert(p != NULL);
     struct singly_linked_node *n = singly_linked_node(d);
     if (n == NULL) {
         return NULL;
@@ -37,11 +35,9 @@ struct singly_linked_node * singly_linked_node_insert_next(
     return n;
 }
 
-// ---------------------------------------------------------------------- delete
-
 void * singly_linked_node_delete_next(struct singly_linked_node *p) {
-    assert (p != NULL);
-    assert (p->next != NULL);
+    assert(p != NULL);
+    assert(p->next != NULL);
     struct singly_linked_node *n = p->next;
     p->next = n->next;
     n->next = NULL;

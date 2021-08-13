@@ -13,7 +13,7 @@ struct doubly_linked_list_env {
 };
 
 
-struct doubly_linked_node * node_from_head(struct list *l, size_t i) {
+struct doubly_linked_node * node(struct list *l, size_t i) {
     assert(l != NULL);
     struct doubly_linked_list_env *e = l->env;    // <1>
     struct doubly_linked_node *n = e->head;       // <2>
@@ -97,7 +97,7 @@ void doubly_linked_list_insert(struct list *l, size_t i, void *d) {
         doubly_linked_list_insert_last(l, d);
         return;
     }
-    struct doubly_linked_node *p = node_from_head(l, i - 1);
+    struct doubly_linked_node *p = node(l, i - 1);
     doubly_linked_node_insert_next(p, d);
 }
 
@@ -143,7 +143,7 @@ void * doubly_linked_list_delete(struct list *l, size_t i) {
     } else if (i == doubly_linked_list_size(l) - 1) {
         return doubly_linked_list_delete_last(l);
     }
-    struct doubly_linked_node *p = node_from_head(l, i - 1);
+    struct doubly_linked_node *p = node(l, i - 1);
     return doubly_linked_node_delete_next(p);
 }
 
