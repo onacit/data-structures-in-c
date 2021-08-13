@@ -110,6 +110,7 @@ struct list * singly_linked_list() {
     if (e == NULL) {
         return NULL;
     }
+    e->head = NULL;
     struct list *l = malloc(sizeof(struct list));
     if (l == NULL) {
         free(e);
