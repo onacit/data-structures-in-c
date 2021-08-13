@@ -142,7 +142,7 @@ struct list * array_list() {
 
 void array_list_free(struct list *const l) {
     assert(l != NULL);
-    assert(array_list_empty(l));
+    assert(array_list_size(l) == 0);
     struct array_list_env *const e = l->env;
     free(e->array);
     free(e);
