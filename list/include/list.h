@@ -29,9 +29,9 @@ struct list {
     size_t (*size)(struct list *l);
     bool (*empty)(struct list *l);
 
-    int (*insert)(struct list *l, size_t i, void *d);
-    int (*insert_first)(struct list *l, void *d);
-    int (*insert_last)(struct list *l, void *d);
+    bool (*insert)(struct list *l, size_t i, void *d);
+    bool (*insert_first)(struct list *l, void *d);
+    bool (*insert_last)(struct list *l, void *d);
 
     void * (*delete)(struct list *l, size_t i);
     void * (*delete_first)(struct list *l);

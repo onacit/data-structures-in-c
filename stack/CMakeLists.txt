@@ -17,4 +17,5 @@ add_library(
         src/array_list_stack.c
         src/list_stack.c
         src/stack.c
-        src/list_stack.c)
+        src/list_stack.c
+        include/singly_linked_list_stack.h src/singly_linked_list_stack.c)

@@ -11,7 +11,7 @@ size_t stack_size(struct stack *s) {
     return s->size(s);
 }
 
-bool empty(struct stack *s) {
+bool stack_empty(struct stack *s) {
     assert(s != NULL);
     if (s->empty != NULL) {
         return s->empty(s);

@@ -30,7 +30,7 @@ void * list_stack_pop(struct stack *s) {
     return list_delete_first(l);
 }
 
-struct stack * list_stack(struct list *l) {
+struct stack * list_stack(struct list *const l) {
     assert(l != NULL);
     struct stack *s = malloc(sizeof(struct stack *));
     if (s == NULL) {
@@ -44,13 +44,11 @@ struct stack * list_stack(struct list *l) {
     return s;
 }
 
-struct list * list_stack_free(struct stack *s) {
+void list_stack_free(struct list *const l, struct stack *s) {
     assert(s != NULL);
-    struct list *l = s->env;
     s->size = NULL;
     s->empty = NULL;
     s->push = NULL;
     s->pop = NULL;
     free(s);
-    return l;
 }

@@ -54,51 +54,56 @@ bool doubly_linked_list_empty(struct list *l) {
 
 // ---------------------------------------------------------------------- insert
 
-void doubly_linked_list_insert_first(struct list *l, void *d) {
+bool doubly_linked_list_insert_first(struct list *l, void *d) {
     assert(l != NULL);
     struct doubly_linked_list_env *e = l->env;
     assert(e != NULL);
     if (e->head != NULL) {
         e->head = doubly_linked_node_insert_prev(e->head, d);
-        return;
+        return true;
     }
     assert(e->head == NULL);
     assert(e->tail == NULL);
     struct doubly_linked_node *n = doubly_linked_node(d);
-    assert(n != NULL);
+    if (n == NULL) {
+        return false;
+    }
     e->head = n;
     e->tail = n;
+    return true;
 }
 
-void doubly_linked_list_insert_last(struct list *l, void *d) {
+bool doubly_linked_list_insert_last(struct list *l, void *d) {
     assert(l != NULL);
     struct doubly_linked_list_env *e = l->env;
     assert(e != NULL);
     if (e->tail != NULL) {
         e->tail = doubly_linked_node_insert_next(e->tail, d);
-        return;
+        return true;
     }
     assert(e->tail == NULL);
     assert(e->head == NULL);
     struct doubly_linked_node *n = doubly_linked_node(d);
-    assert(n != NULL);
+    if (n == NULL) {
+        return false;
+    }
     e->tail = n;
     e->head = n;
+    return true;
 }
 
-void doubly_linked_list_insert(struct list *l, size_t i, void *d) {
+bool doubly_linked_list_insert(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     assert(i <= doubly_linked_list_size(l));
     struct doubly_linked_list_env *e = l->env;
     if (i == 0) {
-        doubly_linked_list_insert_first(l, d);
-        return;
+        return doubly_linked_list_insert_first(l, d);
     } else if (i == doubly_linked_list_size(l)) {
-        doubly_linked_list_insert_last(l, d);
-        return;
+        return doubly_linked_list_insert_last(l, d);
     }
     struct doubly_linked_node *p = node(l, i - 1);
-    doubly_linked_node_insert_next(p, d);
+    struct doubly_linked_node *n = doubly_linked_node_insert_next(p, d);
+    return n != NULL;
 }
 
 // ---------------------------------------------------------------------- delete
@@ -151,7 +156,8 @@ void * doubly_linked_list_delete(struct list *l, size_t i) {
 // ---------------------------------------------------------------------------------------------------------------------
 
 struct list * doubly_linked_list() {
-    struct doubly_linked_list_env *e = malloc(sizeof(struct doubly_linked_list_env));
+    struct doubly_linked_list_env *e
+            = malloc(sizeof(struct doubly_linked_list_env));
     if (e == NULL) {
         return NULL;
     }
@@ -172,7 +178,7 @@ struct list * doubly_linked_list() {
     return l;
 }
 
-void doubly_linked_list_free(struct list *l) {
+void doubly_linked_list_free(struct list *const l) {
     assert(l != NULL);
     assert(doubly_linked_list_empty(l));
     free(l);

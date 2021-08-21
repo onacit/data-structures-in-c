@@ -1,11 +1,8 @@
-//
-// Created by onacit on 2021-06-09.
-//
 
 #ifndef DATA_STRUCTURES_IN_C_ARRAY_LIST_STACK_H
 #define DATA_STRUCTURES_IN_C_ARRAY_LIST_STACK_H
 
-#include "stack.h"
+#include "list_stack.h"
 
 struct stack * array_list_stack();
 

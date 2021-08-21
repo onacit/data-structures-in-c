@@ -20,7 +20,7 @@ struct stack {
 
 size_t stack_size(struct stack *s);
 
-bool empty(struct stack *s);
+bool stack_empty(struct stack *s);
 
 void stack_push(struct stack *s, void *d);
 

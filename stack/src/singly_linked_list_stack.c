@@ -1,14 +1,11 @@
-//
-// Created by onacit on 2021-07-20.
-//
 
 #include <assert.h>
 #include <stdlib.h>
-#include "array_list.h"
-#include "array_list_stack.h"
+#include "singly_linked_list.h"
+#include "singly_linked_list_stack.h"
 
-struct stack * array_list_stack() {
-    struct list *l = array_list();
+struct stack * singly_linked_list_stack() {
+    struct list *l = singly_linked_list();
     if (l == NULL) {
         return NULL;
     }
@@ -21,9 +18,9 @@ struct stack * array_list_stack() {
     return s;
 }
 
-void array_list_stack_free(struct stack *const s) {
+void singly_linked_list_stack_free(struct stack *const s) {
     assert(s != NULL);
     struct list *l = s->env;
-    array_list_free(l);
+    singly_linked_list_free(l);
     free(s);
 }
