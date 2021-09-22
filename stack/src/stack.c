@@ -24,7 +24,7 @@ void stack_push(struct stack *s, void *d) {
     s->push(s, d);
 }
 
-void * stack_pop(struct stack *s) {
+void *stack_pop(struct stack *s) {
     assert(s != NULL);
     return s->pop(s);
 }

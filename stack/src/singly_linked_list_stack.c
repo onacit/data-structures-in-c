@@ -4,7 +4,7 @@
 #include "singly_linked_list.h"
 #include "singly_linked_list_stack.h"
 
-struct stack * singly_linked_list_stack() {
+struct stack *singly_linked_list_stack() {
     struct list *l = singly_linked_list();
     if (l == NULL) {
         return NULL;

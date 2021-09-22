@@ -9,13 +9,15 @@
 
 struct stack {
 
-    void * env;
+    void *env;
 
     size_t (*size)(struct stack *);
+
     bool (*empty)(struct stack *);
 
     void (*push)(struct stack *, void *);
-    void * (*pop)(struct stack *);
+
+    void *(*pop)(struct stack *);
 };
 
 size_t stack_size(struct stack *s);
@@ -24,6 +26,6 @@ bool stack_empty(struct stack *s);
 
 void stack_push(struct stack *s, void *d);
 
-void * stack_pop(struct stack *s);
+void *stack_pop(struct stack *s);
 
 #endif //DATA_STRUCTURES_IN_C_STACK_H

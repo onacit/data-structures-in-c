@@ -7,7 +7,7 @@
 
 #include "list.h"
 
-struct list * doubly_linked_list();
+struct list *doubly_linked_list();
 
 void doubly_linked_list_free(struct list *l);
 

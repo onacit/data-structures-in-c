@@ -47,13 +47,13 @@ int list_insert_last(struct list *l, void *d) {
 
 // ---------------------------------------------------------------------- delete
 
-void * list_delete(struct list *l, size_t i) {
+void *list_delete(struct list *l, size_t i) {
     assert(l != NULL);
     assert(!list_empty(l));
     return l->delete(l, i);
 }
 
-void * list_delete_first(struct list *l) {
+void *list_delete_first(struct list *l) {
     assert(l != NULL);
     if (l->delete_first != NULL) {
         return l->delete_first(l);
@@ -61,7 +61,7 @@ void * list_delete_first(struct list *l) {
     return list_delete(l, 0);
 }
 
-void * list_delete_last(struct list *l) {
+void *list_delete_last(struct list *l) {
     assert(l != NULL);
     if (l->delete_first != NULL) {
         return l->delete_last(l);
@@ -71,13 +71,13 @@ void * list_delete_last(struct list *l) {
 
 // ------------------------------------------------------------------------- get
 
-void * list_get(struct list *l, size_t i) {
+void *list_get(struct list *l, size_t i) {
     assert(l != NULL);
     assert(!list_empty(l));
     return l->get(l, i);
 }
 
-void * list_get_first(struct list *l) {
+void *list_get_first(struct list *l) {
     assert(l != NULL);
     if (l->get_first != NULL) {
         return l->get_first(l);
@@ -85,7 +85,7 @@ void * list_get_first(struct list *l) {
     return list_get(l, 0);
 }
 
-void * list_get_last(struct list *l) {
+void *list_get_last(struct list *l) {
     assert(l != NULL);
     if (l->get_last != NULL) {
         return l->get_last(l);
@@ -95,13 +95,13 @@ void * list_get_last(struct list *l) {
 
 // ------------------------------------------------------------------------- set
 
-void * list_set(struct list *l, size_t i, void *d) {
+void *list_set(struct list *l, size_t i, void *d) {
     assert(l != NULL);
     assert(!list_empty(l));
     return l->set(l, i, d);
 }
 
-void * list_set_first(struct list *l, void *d) {
+void *list_set_first(struct list *l, void *d) {
     assert(l != NULL);
     if (l->set_first != NULL) {
         return l->set_first(l, d);
@@ -109,7 +109,7 @@ void * list_set_first(struct list *l, void *d) {
     return list_set(l, 0, d);
 }
 
-void * list_set_last(struct list *l, void *d) {
+void *list_set_last(struct list *l, void *d) {
     assert(l != NULL);
     if (l->set_last != NULL) {
         return l->set_last(l, d);
@@ -119,12 +119,12 @@ void * list_set_last(struct list *l, void *d) {
 
 // -------------------------------------------------------------------- iterator
 
-struct list_iterator * list_iterator(struct list *l, size_t i) {
+struct list_iterator *list_iterator(struct list *l, size_t i) {
     assert(l != NULL);
     return l->iterator(l, i);
 }
 
-struct list_iterator * list_iterator_first(struct list *l) {
+struct list_iterator *list_iterator_first(struct list *l) {
     assert(l != NULL);
     if (l->iterator_first != NULL) {
         l->iterator_first(l);
@@ -133,7 +133,7 @@ struct list_iterator * list_iterator_first(struct list *l) {
     return l->iterator(l, i);
 }
 
-struct list_iterator * list_iterator_last(struct list *l) {
+struct list_iterator *list_iterator_last(struct list *l) {
     assert(l != NULL);
     if (l->iterator_last != NULL) {
         l->iterator_last(l);

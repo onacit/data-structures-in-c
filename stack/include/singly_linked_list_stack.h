@@ -7,8 +7,8 @@
 
 #include "list_stack.h"
 
-struct stack * singly_linked_list_stack();
+struct stack *singly_linked_list_stack();
 
-void singly_linked_list_stack_free(struct stack * s);
+void singly_linked_list_stack_free(struct stack *s);
 
 #endif //DATA_STRUCTURES_IN_C_SINGLY_LINKED_LIST_STACK_H

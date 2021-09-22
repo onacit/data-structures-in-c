@@ -8,7 +8,7 @@
 #include "array_list_queue.h"
 #include "list_queue.h"
 
-struct queue * array_list_queue() {
+struct queue *array_list_queue() {
     struct list *l = array_list();
     if (l == NULL) {
         return NULL;

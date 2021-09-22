@@ -24,13 +24,13 @@ void list_stack_push(struct stack *s, void *d) {
     list_insert_first(l, d);
 }
 
-void * list_stack_pop(struct stack *s) {
+void *list_stack_pop(struct stack *s) {
     assert(s != NULL);
     struct list *l = s->env;
     return list_delete_first(l);
 }
 
-struct stack * list_stack(struct list *const l) {
+struct stack *list_stack(struct list *const l) {
     assert(l != NULL);
     struct stack *s = malloc(sizeof(struct stack *));
     if (s == NULL) {

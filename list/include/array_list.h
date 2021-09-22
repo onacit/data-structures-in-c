@@ -3,7 +3,7 @@
 
 #include "list.h"
 
-struct list * array_list();
+struct list *array_list();
 
 void array_list_free(struct list *l);
 

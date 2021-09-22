@@ -23,7 +23,7 @@ void queue_enqueue(struct queue *q, void *d) {
     q->enqueue(q, d);
 }
 
-void * queue_dequeue(struct queue *q) {
+void *queue_dequeue(struct queue *q) {
     assert(q != NULL);
     return q->dequeue(q);
 }

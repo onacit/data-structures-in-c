@@ -1,3 +1,5 @@
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(
         include
 )
@@ -17,42 +19,27 @@ add_library(
 )
 
 add_executable(
-        presidents_of_united_states_find_by_presidency
-        include/presidents_of_united_states.h
-        src/presidents_of_united_states.c
-        apps/presidents_of_united_states_find_by_presidency.c
-)
-
-add_executable(
-        presidents_of_united_states_find_by_president
-        include/presidents_of_united_states.h
-        src/presidents_of_united_states.c
-        apps/presidents_of_united_states_find_by_president.c
-)
-
-add_executable(
-        presidents_of_united_states_list_up
+        print_presidents_of_united_states
         include/miscellaneous.h
         include/presidents_of_united_states.h
         src/miscellaneous.c
         src/presidents_of_united_states.c
-        apps/presidents_of_united_states_list_up.c
+        apps/print_presidents_of_united_states.c
 )
 
 add_executable(
-        presidents_of_united_states_print_current
+        miscellaneous_test
         include/miscellaneous.h
-        include/presidents_of_united_states.h
         src/miscellaneous.c
-        src/presidents_of_united_states.c
-        apps/presidents_of_united_states_print_current.c
+        test/miscellaneous_test.cpp
 )
 
-add_executable(
-        presidents_of_united_states_print_first
-        include/miscellaneous.h
-        include/presidents_of_united_states.h
-        src/miscellaneous.c
-        src/presidents_of_united_states.c
-        apps/presidents_of_united_states_print_first.c
-)
+#target_link_libraries(
+#        miscellaneous_test
+#        gtest_main
+#)
+#
+#add_test(NAME miscellaneous_test COMMAND miscellaneous)
+
+#include(GoogleTest)
+#gtest_discover_tests(miscellaneous_test)

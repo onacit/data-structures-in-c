@@ -7,7 +7,7 @@
 #include "array_list.h"
 #include "array_list_stack.h"
 
-struct stack * array_list_stack() {
+struct stack *array_list_stack() {
     struct list *l = array_list();
     if (l == NULL) {
         return NULL;

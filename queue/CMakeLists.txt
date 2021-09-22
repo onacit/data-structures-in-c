@@ -1,11 +1,11 @@
 include_directories(
         include
-#        ../miscellaneous/include
+        #        ../miscellaneous/include
         ../list/include
 )
 
 link_libraries(
-#        miscellaneous
+        #        miscellaneous
         list
 )
 

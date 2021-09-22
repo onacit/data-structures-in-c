@@ -4,7 +4,7 @@
 
 #include "list.h"
 
-struct list * singly_linked_list();
+struct list *singly_linked_list();
 
 void singly_linked_list_free(struct list *l);
 

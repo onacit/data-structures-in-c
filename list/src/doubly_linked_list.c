@@ -13,7 +13,7 @@ struct doubly_linked_list_env {
 };
 
 
-struct doubly_linked_node * node(struct list *l, size_t i) {
+struct doubly_linked_node *node(struct list *l, size_t i) {
     assert(l != NULL);
     struct doubly_linked_list_env *e = l->env;    // <1>
     struct doubly_linked_node *n = e->head;       // <2>
@@ -23,7 +23,7 @@ struct doubly_linked_node * node(struct list *l, size_t i) {
     return n;
 }
 
-struct doubly_linked_node * node_from_tail(struct list *l, size_t i) {
+struct doubly_linked_node *node_from_tail(struct list *l, size_t i) {
     assert(l != NULL);
     struct doubly_linked_list_env *e = l->env;    // <1>
     struct doubly_linked_node *n = e->tail;       // <2>
@@ -107,7 +107,7 @@ bool doubly_linked_list_insert(struct list *l, size_t i, void *d) {
 }
 
 // ---------------------------------------------------------------------- delete
-void * doubly_linked_list_delete_first(struct list *l) {
+void *doubly_linked_list_delete_first(struct list *l) {
     assert(l != NULL);
     assert(doubly_linked_list_size(l) > 0);
     struct doubly_linked_list_env *e = l->env;
@@ -123,15 +123,15 @@ void * doubly_linked_list_delete_first(struct list *l) {
     return doubly_linked_node_free(h);
 }
 
-void * doubly_linked_list_delete_last(struct list *l) {
+void *doubly_linked_list_delete_last(struct list *l) {
     assert(l != NULL);
     assert(doubly_linked_list_size(l) > 0);
     struct doubly_linked_list_env *e = l->env;
     assert(e != NULL);
     struct doubly_linked_node *t = e->tail;
     assert(t != NULL);
-    e->tail= t->prev;
-    if (e->tail== NULL) {
+    e->tail = t->prev;
+    if (e->tail == NULL) {
         e->head = NULL;
     }
     t->prev = NULL;
@@ -139,7 +139,7 @@ void * doubly_linked_list_delete_last(struct list *l) {
     return doubly_linked_node_free(t);
 }
 
-void * doubly_linked_list_delete(struct list *l, size_t i) {
+void *doubly_linked_list_delete(struct list *l, size_t i) {
     assert(l != NULL);
     assert(!doubly_linked_list_empty(l));
     assert(i < doubly_linked_list_size(l));
@@ -155,7 +155,7 @@ void * doubly_linked_list_delete(struct list *l, size_t i) {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-struct list * doubly_linked_list() {
+struct list *doubly_linked_list() {
     struct doubly_linked_list_env *e
             = malloc(sizeof(struct doubly_linked_list_env));
     if (e == NULL) {

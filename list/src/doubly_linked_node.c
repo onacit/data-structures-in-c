@@ -4,7 +4,7 @@
 
 // ------------------------------------------------------ constructor/destructor
 
-struct doubly_linked_node * doubly_linked_node(void *d) {
+struct doubly_linked_node *doubly_linked_node(void *d) {
     struct doubly_linked_node *n = malloc(sizeof(struct doubly_linked_node));
     if (n == NULL) {
         return NULL;
@@ -15,7 +15,7 @@ struct doubly_linked_node * doubly_linked_node(void *d) {
     return n;
 }
 
-void * doubly_linked_node_free(struct doubly_linked_node *n) {
+void *doubly_linked_node_free(struct doubly_linked_node *n) {
     assert(n != NULL);
     assert(n->next == NULL);
     assert(n->prev == NULL);
@@ -27,9 +27,9 @@ void * doubly_linked_node_free(struct doubly_linked_node *n) {
 
 // ---------------------------------------------------------------------- insert
 
-struct doubly_linked_node * doubly_linked_node_insert_next(
+struct doubly_linked_node *doubly_linked_node_insert_next(
         struct doubly_linked_node *p, void *d) {
-    assert (p != NULL);
+    assert(p != NULL);
     struct doubly_linked_node *n = doubly_linked_node(d);
     if (n == NULL) {
         return NULL;
@@ -43,9 +43,9 @@ struct doubly_linked_node * doubly_linked_node_insert_next(
     return n;
 }
 
-struct doubly_linked_node * doubly_linked_node_insert_prev(
+struct doubly_linked_node *doubly_linked_node_insert_prev(
         struct doubly_linked_node *n, void *d) {
-    assert (n != NULL);
+    assert(n != NULL);
     struct doubly_linked_node *p = n->prev;
     if (p != NULL) {
         return doubly_linked_node_insert_next(p, d);
@@ -61,9 +61,9 @@ struct doubly_linked_node * doubly_linked_node_insert_prev(
 
 // ---------------------------------------------------------------------- delete
 
-void * doubly_linked_node_delete_next(struct doubly_linked_node *p) {
-    assert (p != NULL);
-    assert (p->next != NULL);
+void *doubly_linked_node_delete_next(struct doubly_linked_node *p) {
+    assert(p != NULL);
+    assert(p->next != NULL);
     struct doubly_linked_node *n = p->next;
     p->next = n->next;
     if (p->next != NULL) {
@@ -74,9 +74,9 @@ void * doubly_linked_node_delete_next(struct doubly_linked_node *p) {
     return doubly_linked_node_free(n);
 }
 
-void * doubly_linked_node_delete_prev(struct doubly_linked_node *n) {
-    assert (n != NULL);
-    assert (n->prev != NULL);
+void *doubly_linked_node_delete_prev(struct doubly_linked_node *n) {
+    assert(n != NULL);
+    assert(n->prev != NULL);
     struct doubly_linked_node *p = n->prev;
     if (p->prev != NULL) {
         return doubly_linked_node_delete_next(p->prev);

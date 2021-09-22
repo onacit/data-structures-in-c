@@ -23,13 +23,13 @@ void list_queue_enqueue(struct queue *q, void *d) {
     list_insert_first(l, d);
 }
 
-void * list_queue_dequeue(struct queue *q) {
+void *list_queue_dequeue(struct queue *q) {
     assert(q != NULL);
     struct list *l = q->env;
     return list_delete_last(l);
 }
 
-struct queue * list_queue(struct list *l) {
+struct queue *list_queue(struct list *l) {
     assert(l != NULL);
     struct queue *q = malloc(sizeof(struct queue));
     if (q == NULL) {
@@ -43,7 +43,7 @@ struct queue * list_queue(struct list *l) {
     return q;
 }
 
-struct list * list_queue_free(struct queue *q) {
+struct list *list_queue_free(struct queue *q) {
     assert(q != NULL);
     struct list *l = q->env;
     q->env = NULL;
