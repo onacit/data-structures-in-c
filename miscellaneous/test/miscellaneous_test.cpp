@@ -8,8 +8,6 @@ extern "C" {
 #include "miscellaneous.h"
 };
 
-TEST(OrdinalTest, BasicAssertions
-) {
-ASSERT_EQ(ordinal_((unsigned char) 0),
-"0th");
+TEST(OrdinalTest, BasicAssertions) {
+ASSERT_EQ(ordinal_((unsigned char) 0),"0th");
 }
