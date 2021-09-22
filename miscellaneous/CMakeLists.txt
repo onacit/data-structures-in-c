@@ -1,4 +1,3 @@
-set(CMAKE_CXX_STANDARD 11)
 
 include_directories(
         include
@@ -27,6 +26,9 @@ add_executable(
         apps/print_presidents_of_united_states.c
 )
 
+enable_testing()
+include(GoogleTest)
+
 add_executable(
         miscellaneous_test
         include/miscellaneous.h
@@ -34,12 +36,12 @@ add_executable(
         test/miscellaneous_test.cpp
 )
 
-#target_link_libraries(
-#        miscellaneous_test
-#        gtest_main
-#)
+target_link_libraries(
+        miscellaneous_test
+        gtest_main
+)
 #
 #add_test(NAME miscellaneous_test COMMAND miscellaneous)
 
 #include(GoogleTest)
-#gtest_discover_tests(miscellaneous_test)
+gtest_discover_tests(miscellaneous_test)

@@ -22,19 +22,21 @@ int ordinal_llu(char *s, unsigned long long int c);
 int ordinal_llu_n(char *s, size_t n, unsigned long long int c);
 
 #define ordinal_numeral(S, C) _Generic((C), \
-  unsigned char: ordinal_hhu,         \
-  unsigned short int: ordinal_hu,     \
-  unsigned int: ordinal_u,            \
-  unsigned long int: ordinal_lu,      \
-  unsigned long long int: ordinal_llu \
+  unsigned char:          ordinal_hhu,      \
+  unsigned short int:     ordinal_hu,       \
+  unsigned int:           ordinal_u,        \
+  unsigned long int:      ordinal_lu,       \
+  unsigned long long int: ordinal_llu,      \
+  default:                ordinal_u         \
 )(S, C)
 
 #define ordinal_numeral_n(S, N, C) _Generic((C), \
-  unsigned char: ordinal_hhu_n,         \
-  unsigned short int: ordinal_hu_n,     \
-  unsigned int: ordinal_u_n,            \
-  unsigned long int: ordinal_lu_n,      \
-  unsigned long long int: ordinal_llu_n \
+  unsigned char:          ordinal_hhu_n,         \
+  unsigned short int:     ordinal_hu_n,          \
+  unsigned int:           ordinal_u_n,           \
+  unsigned long int:      ordinal_lu_n,          \
+  unsigned long long int: ordinal_llu_n,         \
+  default:                ordinal_u              \
 )(S, N, C)
 
 #endif //DATA_STRUCTURES_IN_C_MISCELLANEOUS_H
