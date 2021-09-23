@@ -33,7 +33,7 @@ add_executable(
         miscellaneous_test
         include/miscellaneous.h
         src/miscellaneous.c
-        test/miscellaneous_test.cpp
+        test/miscellaneous_ordinal_test.cpp
 )
 
 target_link_libraries(
