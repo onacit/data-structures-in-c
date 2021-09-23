@@ -1,7 +1,7 @@
 #cmake_minimum_required(VERSION 3.19)
 cmake_minimum_required(VERSION 3.16)
 #cmake_minimum_required(VERSION 3.14)
-project(data_structures_in_c)
+project(data_structures_in_c LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 

@@ -40,8 +40,5 @@ target_link_libraries(
         miscellaneous_test
         gtest_main
 )
-#
-#add_test(NAME miscellaneous_test COMMAND miscellaneous)
 
-#include(GoogleTest)
 gtest_discover_tests(miscellaneous_test)
