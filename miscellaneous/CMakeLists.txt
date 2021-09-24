@@ -18,6 +18,11 @@ add_library(
 )
 
 add_executable(
+        print_integer_limits
+        apps/print_integer_limits.c
+)
+
+add_executable(
         print_presidents_of_united_states
         include/miscellaneous.h
         include/presidents_of_united_states.h
@@ -27,18 +32,155 @@ add_executable(
 )
 
 enable_testing()
+include(CTest)
 include(GoogleTest)
 
+# ----------------------------------------------------------------------------------------- miscellaneous_ordinal_g_test
 add_executable(
-        miscellaneous_test
+        miscellaneous_ordinal_g_test
         include/miscellaneous.h
         src/miscellaneous.c
-        test/miscellaneous_ordinal_test.cpp
+        test/miscellaneous_ordinal_g_test.c
+)
+add_test(
+        ordinal_g
+        miscellaneous_ordinal_g_test
 )
 
+# ------------------------------------------------------------------------------------- miscellaneous_snprintf_ordinal_g
+add_executable(
+        miscellaneous_snprintf_ordinal_g
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_snprintf_ordinal_g.c
+)
+add_test(
+        miscellaneous_snprintf_ordinal_g
+        miscellaneous_snprintf_ordinal_g
+)
+set_tests_properties(
+        miscellaneous_snprintf_ordinal_g
+        PROPERTIES
+        0
+        1 2 3
+        11 12 13
+        21 22 23
+        255
+        65535
+        4294967295
+        18446744073709551615
+)
+
+# -------------------------------------------------------------------------------------- miscellaneous_sprintf_ordinal_g
+add_executable(
+        miscellaneous_sprintf_ordinal_g
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g
+        COMMAND miscellaneous_sprintf_ordinal_g
+)
+set_tests_properties(
+        miscellaneous_sprintf_ordinal_g
+        PROPERTIES
+        0
+        1 2 3
+        11 12 13
+        21 22 23
+        255
+        65535
+        4294967295
+        18446744073709551615
+)
+
+# ---------------------------------------------------------------------------------- miscellaneous_snprintf_ordinal_test
+add_executable(
+        miscellaneous_snprintf_ordinal_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_snprintf_ordinal_test.cpp
+)
 target_link_libraries(
-        miscellaneous_test
+        miscellaneous_snprintf_ordinal_test
         gtest_main
 )
 
-gtest_discover_tests(miscellaneous_test)
+# ------------------------------------------------------------------- miscellaneous_sprintf_ordinal_g_unsigned_char_test
+add_executable(
+        miscellaneous_sprintf_ordinal_g_unsigned_char_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g_unsigned_char_test.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g_unsigned_char_test
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_char_test 0 1 2 3 11 12 13 21 22 23 255
+)
+
+# -------------------------------------------------------------------- miscellaneous_sprintf_ordinal_g_unsigned_int_test
+add_executable(
+        miscellaneous_sprintf_ordinal_g_unsigned_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g_unsigned_int_test.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g_unsigned_int_test
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_int_test 0 1 2 3 11 12 13 21 22 23 65535
+)
+
+# --------------------------------------------------------------- miscellaneous_sprintf_ordinal_g_unsigned_long_int_test
+add_executable(
+        miscellaneous_sprintf_ordinal_g_unsigned_long_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g_unsigned_long_int_test.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g_unsigned_long_int_test
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_long_int_test 0 1 2 3 11 12 13 21 22 23 4294967295
+)
+
+# ---------------------------------------------------------- miscellaneous_sprintf_ordinal_g_unsigned_long_long_int_test
+add_executable(
+        miscellaneous_sprintf_ordinal_g_unsigned_long_long_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g_unsigned_long_long_int_test.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g_unsigned_long_long_int_test
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_long_long_int_test 0 1 2 3 11 12 13 21 22 23 18446744073709551615
+)
+
+# -------------------------------------------------------------- miscellaneous_sprintf_ordinal_g_unsigned_short_int_test
+add_executable(
+        miscellaneous_sprintf_ordinal_g_unsigned_short_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_g_unsigned_short_int_test.c
+)
+add_test(
+        NAME miscellaneous_sprintf_ordinal_g_unsigned_short_int_test
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_short_int_test 0 1 2 3 11 12 13 21 22 23 255 65535
+)
+
+# ----------------------------------------------------------------------------------- miscellaneous_sprintf_ordinal_test
+add_executable(
+        miscellaneous_sprintf_ordinal_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_sprintf_ordinal_test.cpp
+)
+target_link_libraries(
+        miscellaneous_sprintf_ordinal_test
+        gtest_main
+)
+
+# ------------------------------------------------------------------------------------------------- gtest_discover_tests
+gtest_discover_tests(
+        miscellaneous_snprintf_ordinal_test
+        miscellaneous_sprintf_ordinal_test
+)

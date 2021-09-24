@@ -13,22 +13,28 @@ int sprintf_ordinal_llu(char *s, unsigned long long int c);
 
 int snprintf_ordinal_llu(char *s, size_t n, unsigned long long int c);
 
-//#define sprintf_ordinal_u(S, C) _Generic((C), \
-//  unsigned char:          ordinal_hhu,      \
-//  unsigned short int:     ordinal_hu,       \
-//  unsigned int:           ordinal_u,        \
-//  unsigned long int:      ordinal_lu,       \
-//  unsigned long long int: ordinal_llu,      \
-//  default:                ordinal_u         \
-//)(S, C)
-//
-//#define snprintf_ordinal_u(S, N, C) _Generic((C), \
-//  unsigned char:          ordinal_hhu_n,         \
-//  unsigned short int:     ordinal_hu_n,          \
-//  unsigned int:           ordinal_u_n,           \
-//  unsigned long int:      ordinal_lu_n,          \
-//  unsigned long long int: ordinal_llu_n,         \
-//  default:                ordinal_u              \
-//)(S, N, C)
+// https://stackoverflow.com/a/42698961/330457
+//_Static_assert(__STDC__ == 1 && __STDC_VERSION >= 201112L);
+
+// https://stackoverflow.com/a/42704051/330457
+//_Static_assert(_Generic(0, default: 1), "we need _Generic");
+
+#define sprintf_ordinal_g(S, C) _Generic((C), \
+  unsigned char:          sprintf_ordinal_u,          \
+  unsigned short int:     sprintf_ordinal_u,          \
+  unsigned int:           sprintf_ordinal_u,          \
+  unsigned long int:      sprintf_ordinal_lu,         \
+  unsigned long long int: sprintf_ordinal_llu,        \
+  default:                sprintf_ordinal_u           \
+)(S, C)
+
+#define snprintf_ordinal_g(S, N, C) _Generic((C), \
+  unsigned char:          snprintf_ordinal_u_n,            \
+  unsigned short int:     snprintf_ordinal_u_n,            \
+  unsigned int:           snprintf_ordinal_u_n,            \
+  unsigned long int:      snprintf_ordinal_lu_n,           \
+  unsigned long long int: snprintf_ordinal_llu_n,          \
+  default:                snprintf_ordinal_u               \
+)(S, N, C)
 
 #endif //DATA_STRUCTURES_IN_C_MISCELLANEOUS_H

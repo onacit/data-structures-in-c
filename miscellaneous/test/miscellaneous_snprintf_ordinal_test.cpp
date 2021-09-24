@@ -1,7 +1,5 @@
-//
-// Created by onacit on 2021-09-22.
-//
 
+#include <climits>
 #include "gtest/gtest.h"
 
 extern "C" {
@@ -58,16 +56,18 @@ TEST(Ordinal, UINTMAX) {
 
 TEST(Ordinal, ULONGMAX) {
     int const l = snprintf(NULL, 0, "%lu", ULONG_MAX);
-    char ordinal[l + 1];
-    int const n = sprintf_ordinal_lu(ordinal, ULONG_MAX);
+    char ordinal[l + 3];
+    //int const n = sprintf_ordinal_lu(ordinal, ULONG_MAX);
+    int const n = snprintf_ordinal_lu(ordinal, l + 3, ULONG_MAX);
     printf("ULONG_MAX: %s (%d)\n", ordinal, n);
     ASSERT_EQ(l + 2, n);
 }
 
 TEST(Ordinal, ULLONGMAX) {
-    int const l = snprintf(NULL, 0, "%llu", ULLONG_MAX);
-    char ordinal[l + 1];
-    int const n = sprintf_ordinal_llu(ordinal, ULLONG_MAX);
+    int const l = snprintf(NULL, 0, "%llu", ULLONG_MAX) + 3;
+    char ordinal[l];
+    //int const n = sprintf_ordinal_llu(ordinal, ULLONG_MAX);
+    int const n = snprintf_ordinal_llu(ordinal, l, ULLONG_MAX);
     printf("ULLONG_MAX: %s (%d)\n", ordinal, n);
-    ASSERT_EQ(l + 2, n);
+    ASSERT_EQ(l - 1, n);
 }

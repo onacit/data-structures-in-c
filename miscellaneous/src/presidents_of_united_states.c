@@ -10,7 +10,7 @@
 
 static const char FILENAME_PRESIDENTS_OF_UNITED_STATES[] = "presidents_of_united_states.txt";
 
-void presidents_of_united_states(struct president_of_united_state *presidents) {
+void presidents_of_united_states(struct president_of_united_state * const presidents) {
     assert(presidents != NULL);
     FILE *stream = fopen(FILENAME_PRESIDENTS_OF_UNITED_STATES, "r");
     if (stream == NULL) {
@@ -18,7 +18,7 @@ void presidents_of_united_states(struct president_of_united_state *presidents) {
         return;
     }
     for (int i = 0; i < NUMBER_OF_PRESIDENTS_OF_UNITED_STATES; i++) {
-        int const n = fscanf(stream, "%hhu %23[^\n]", &presidents[i].presidency, presidents[i].president);
+        int const n = fscanf(stream, "%hhu %23[^\n]s", &presidents[i].presidency, presidents[i].president);
         assert(n == 2);
     }
     if (fclose(stream) == EOF) {

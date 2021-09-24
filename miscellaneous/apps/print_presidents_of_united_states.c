@@ -12,7 +12,7 @@ int main() {
 //        int const n = sprintf_ordinal_u(ordinal, presidents[i].presidency);
         int const n = snprintf_ordinal_u(ordinal, 5, presidents[i].presidency);
         assert(n < 5);
-        printf("The %s President of United States of America: %s\n", ordinal, presidents[i].president);
+        printf("The %s President of the United States: %s\n", ordinal, presidents[i].president);
     }
     return EXIT_SUCCESS;
 }
