@@ -31,68 +31,64 @@ add_executable(
         apps/print_presidents_of_united_states.c
 )
 
-enable_testing()
-include(CTest)
-include(GoogleTest)
-
-# ----------------------------------------------------------------------------------------- miscellaneous_ordinal_g_test
+# ------------------------------------------------------------------ miscellaneous_snprintf_ordinal_g_unsigned_char_test
 add_executable(
-        miscellaneous_ordinal_g_test
+        miscellaneous_snprintf_ordinal_g_unsigned_char_test
         include/miscellaneous.h
         src/miscellaneous.c
-        test/miscellaneous_ordinal_g_test.c
+        test/miscellaneous_snprintf_ordinal_g_unsigned_char_test.c
 )
 add_test(
-        ordinal_g
-        miscellaneous_ordinal_g_test
+        NAME miscellaneous_snprintf_ordinal_g_unsigned_char_test
+        COMMAND miscellaneous_snprintf_ordinal_g_unsigned_char_test 0 1 2 3 11 12 13 21 22 23 255
 )
 
-# ------------------------------------------------------------------------------------- miscellaneous_snprintf_ordinal_g
+# ------------------------------------------------------------------- miscellaneous_snprintf_ordinal_g_unsigned_int_test
 add_executable(
-        miscellaneous_snprintf_ordinal_g
+        miscellaneous_snprintf_ordinal_g_unsigned_int_test
         include/miscellaneous.h
         src/miscellaneous.c
-        test/miscellaneous_snprintf_ordinal_g.c
+        test/miscellaneous_snprintf_ordinal_g_unsigned_int_test.c
 )
 add_test(
-        miscellaneous_snprintf_ordinal_g
-        miscellaneous_snprintf_ordinal_g
-)
-set_tests_properties(
-        miscellaneous_snprintf_ordinal_g
-        PROPERTIES
-        0
-        1 2 3
-        11 12 13
-        21 22 23
-        255
-        65535
-        4294967295
-        18446744073709551615
+        NAME miscellaneous_snprintf_ordinal_g_unsigned_int_test
+        COMMAND miscellaneous_snprintf_ordinal_g_unsigned_int_test 0 1 2 3 11 12 13 21 22 23 65535
 )
 
-# -------------------------------------------------------------------------------------- miscellaneous_sprintf_ordinal_g
+# -------------------------------------------------------------- miscellaneous_snprintf_ordinal_g_unsigned_long_int_test
 add_executable(
-        miscellaneous_sprintf_ordinal_g
+        miscellaneous_snprintf_ordinal_g_unsigned_long_int_test
         include/miscellaneous.h
         src/miscellaneous.c
-        test/miscellaneous_sprintf_ordinal_g.c
+        test/miscellaneous_snprintf_ordinal_g_unsigned_long_int_test.c
 )
 add_test(
-        NAME miscellaneous_sprintf_ordinal_g
-        COMMAND miscellaneous_sprintf_ordinal_g
+        NAME miscellaneous_snprintf_ordinal_g_unsigned_long_int_test
+        COMMAND miscellaneous_snprintf_ordinal_g_unsigned_long_int_test 0 1 2 3 11 12 13 21 22 23 4294967295
 )
-set_tests_properties(
-        miscellaneous_sprintf_ordinal_g
-        PROPERTIES
-        0
-        1 2 3
-        11 12 13
-        21 22 23
-        255
-        65535
-        4294967295
-        18446744073709551615
+
+# --------------------------------------------------------- miscellaneous_snprintf_ordinal_g_unsigned_long_long_int_test
+add_executable(
+        miscellaneous_snprintf_ordinal_g_unsigned_long_long_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_snprintf_ordinal_g_unsigned_long_long_int_test.c
+)
+add_test(
+        NAME miscellaneous_snprintf_ordinal_g_unsigned_long_long_int_test
+        COMMAND miscellaneous_snprintf_ordinal_g_unsigned_long_long_int_test 0 1 2 3 11 12 13 21 22 23 18446744073709551615
+)
+
+# ------------------------------------------------------------- miscellaneous_snprintf_ordinal_g_unsigned_short_int_test
+add_executable(
+        miscellaneous_snprintf_ordinal_g_unsigned_short_int_test
+        include/miscellaneous.h
+        src/miscellaneous.c
+        test/miscellaneous_snprintf_ordinal_g_unsigned_short_int_test.c
+)
+add_test(
+        NAME miscellaneous_snprintf_ordinal_g_unsigned_short_int_test
+        COMMAND miscellaneous_snprintf_ordinal_g_unsigned_short_int_test 0 1 2 3 11 12 13 21 22 23 65535
 )
 
 # ---------------------------------------------------------------------------------- miscellaneous_snprintf_ordinal_test
@@ -164,7 +160,7 @@ add_executable(
 )
 add_test(
         NAME miscellaneous_sprintf_ordinal_g_unsigned_short_int_test
-        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_short_int_test 0 1 2 3 11 12 13 21 22 23 255 65535
+        COMMAND miscellaneous_sprintf_ordinal_g_unsigned_short_int_test 0 1 2 3 11 12 13 21 22 23 65535
 )
 
 # ----------------------------------------------------------------------------------- miscellaneous_sprintf_ordinal_test

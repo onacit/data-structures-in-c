@@ -1,5 +1,6 @@
 
 #include <assert.h>
+#include <errno.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,8 +11,8 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "no arguments provided");
         return EXIT_FAILURE;
     }
-    int const length = snprintf(NULL, 0, "%hu", USHRT_MAX);
-    char ordinal[length + 3];
+    int const l = snprintf(NULL, 0, "%hu", USHRT_MAX);
+    char o[l + 3];
     unsigned long int c;
     for (int i = 1; i < argc; i++) {
         c = strtoul(argv[i], NULL, 0);
@@ -22,10 +23,10 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "unable to convert argv[%d]('%s') to an unsigned short int", i, argv[i]);
             continue;
         }
-        int const n = sprintf_ordinal_g(ordinal, (unsigned short int) c);
-        assert(n < length + 3);
-        printf("%*s: %s\n", length, argv[i], ordinal);
+        int const n = sprintf_ordinal_g(o, (unsigned short int) c);
+        assert(n < l + 3);
+        printf("%*s: %s\n", l, argv[i], o);
     }
-    printf("%*hu\n", (length << 1) + 2, USHRT_MAX);
+    printf("%*hu\n", (l << 1) + 2, USHRT_MAX);
     return EXIT_SUCCESS;
 }

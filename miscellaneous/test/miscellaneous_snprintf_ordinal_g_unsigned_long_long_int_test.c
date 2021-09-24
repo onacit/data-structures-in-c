@@ -11,19 +11,19 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "no arguments provided");
         return EXIT_FAILURE;
     }
-    int const l = snprintf(NULL, 0, "%lu", ULONG_MAX);
+    int const l = snprintf(NULL, 0, "%llu", ULLONG_MAX);
     char o[l + 3];
-    unsigned long int c;
+    unsigned long long int c;
     for (int i = 1; i < argc; i++) {
-        c = strtoul(argv[i], NULL, 0);
+        c = strtoull(argv[i], NULL, 0);
         if (errno == ERANGE) {
-            fprintf(stderr, "unable to convert argv[%d]('%s') to an unsigned long int", i, argv[i]);
+            fprintf(stderr, "unable to convert argv[%d]('%s') to an unsigned long long int", i, argv[i]);
             continue;
         }
-        int const n = sprintf_ordinal_g(o, c);
+        int const n = snprintf_ordinal_g(o, l + 3, c);
         assert(n < l + 3);
         printf("%*s: %s\n", l, argv[i], o);
     }
-    printf("%*lu\n", (l << 1) + 2, ULONG_MAX);
+    printf("%*llu\n", (l << 1) + 2, ULLONG_MAX);
     return EXIT_SUCCESS;
 }

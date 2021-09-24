@@ -8,6 +8,6 @@ struct president_of_united_state {
     char president[23]; // William Henry Harrison (22)
 };
 
-void presidents_of_united_states(struct president_of_united_state *);
+void set_presidents_of_united_states(struct president_of_united_state *);
 
 #endif //DATA_STRUCTURES_IN_C_PRESIDENTS_OF_UNITED_STATES_H

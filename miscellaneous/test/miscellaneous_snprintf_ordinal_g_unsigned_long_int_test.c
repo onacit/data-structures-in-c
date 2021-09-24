@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "unable to convert argv[%d]('%s') to an unsigned long int", i, argv[i]);
             continue;
         }
-        int const n = sprintf_ordinal_g(o, c);
+        int const n = snprintf_ordinal_g(o, l + 3, c);
         assert(n < l + 3);
         printf("%*s: %s\n", l, argv[i], o);
     }

@@ -29,12 +29,12 @@ int snprintf_ordinal_llu(char *s, size_t n, unsigned long long int c);
 )(S, C)
 
 #define snprintf_ordinal_g(S, N, C) _Generic((C), \
-  unsigned char:          snprintf_ordinal_u_n,            \
-  unsigned short int:     snprintf_ordinal_u_n,            \
-  unsigned int:           snprintf_ordinal_u_n,            \
-  unsigned long int:      snprintf_ordinal_lu_n,           \
-  unsigned long long int: snprintf_ordinal_llu_n,          \
-  default:                snprintf_ordinal_u               \
+  unsigned char:          snprintf_ordinal_u,            \
+  unsigned short int:     snprintf_ordinal_u,            \
+  unsigned int:           snprintf_ordinal_u,            \
+  unsigned long int:      snprintf_ordinal_lu,           \
+  unsigned long long int: snprintf_ordinal_llu,          \
+  default:                snprintf_ordinal_u             \
 )(S, N, C)
 
 #endif //DATA_STRUCTURES_IN_C_MISCELLANEOUS_H

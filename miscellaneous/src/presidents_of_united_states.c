@@ -4,13 +4,11 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "presidents_of_united_states.h"
 
 static const char FILENAME_PRESIDENTS_OF_UNITED_STATES[] = "presidents_of_united_states.txt";
 
-void presidents_of_united_states(struct president_of_united_state * const presidents) {
+void set_presidents_of_united_states(struct president_of_united_state *const presidents) {
     assert(presidents != NULL);
     FILE *stream = fopen(FILENAME_PRESIDENTS_OF_UNITED_STATES, "r");
     if (stream == NULL) {
